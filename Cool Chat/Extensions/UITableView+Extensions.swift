@@ -13,7 +13,9 @@ extension UITableView {
         tableView.backgroundColor = .white
         tableView.rowHeight = 80
         tableView.tableFooterView = UIView()
-        tableView.register(customCellClass == nil ? UITableViewCell.self : customCellClass.self, forCellReuseIdentifier: UITableViewCell.conversationTVCellIdentifier)
+        tableView.register(
+            customCellClass == nil ? UITableViewCell.self : customCellClass.self,
+            forCellReuseIdentifier: UITableViewCell.conversationTVCellIdentifier)
         return tableView
     }
 }
