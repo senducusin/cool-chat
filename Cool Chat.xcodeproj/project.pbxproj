@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A6F001D425FB5FF000CDC901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F001D325FB5FF000CDC901 /* AppDelegate.swift */; };
 		A6F001D625FB5FF000CDC901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F001D525FB5FF000CDC901 /* SceneDelegate.swift */; };
-		A6F001D825FB5FF000CDC901 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F001D725FB5FF000CDC901 /* ViewController.swift */; };
 		A6F001DB25FB5FF000CDC901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F001D925FB5FF000CDC901 /* Main.storyboard */; };
 		A6F001DD25FB5FF100CDC901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F001DC25FB5FF100CDC901 /* Assets.xcassets */; };
 		A6F001E025FB5FF100CDC901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F001DE25FB5FF100CDC901 /* LaunchScreen.storyboard */; };
@@ -20,7 +19,6 @@
 		A6F001D025FB5FF000CDC901 /* Cool Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cool Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F001D325FB5FF000CDC901 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6F001D525FB5FF000CDC901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A6F001D725FB5FF000CDC901 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A6F001DA25FB5FF000CDC901 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6F001DC25FB5FF100CDC901 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6F001DF25FB5FF100CDC901 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 				A6F001F825FB62CA00CDC901 /* Controllers */,
 				A6F001D325FB5FF000CDC901 /* AppDelegate.swift */,
 				A6F001D525FB5FF000CDC901 /* SceneDelegate.swift */,
-				A6F001D725FB5FF000CDC901 /* ViewController.swift */,
 				A6F001D925FB5FF000CDC901 /* Main.storyboard */,
 				A6F001DC25FB5FF100CDC901 /* Assets.xcassets */,
 				A6F001DE25FB5FF100CDC901 /* LaunchScreen.storyboard */,
@@ -148,7 +145,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6F001D825FB5FF000CDC901 /* ViewController.swift in Sources */,
 				A6F001D425FB5FF000CDC901 /* AppDelegate.swift in Sources */,
 				A6F001FA25FB62E800CDC901 /* ConversationsController.swift in Sources */,
 				A6F001D625FB5FF000CDC901 /* SceneDelegate.swift in Sources */,
