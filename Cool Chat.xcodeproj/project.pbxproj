@@ -15,6 +15,8 @@
 		A6F0020125FB6A3F00CDC901 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0020025FB6A3F00CDC901 /* UITableView+Extensions.swift */; };
 		A6F0020525FB6AB200CDC901 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0020425FB6AB200CDC901 /* UITableViewCell+Extensions.swift */; };
 		A6F0020825FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0020725FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift */; };
+		A6F0021125FB79BC00CDC901 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0021025FB79BC00CDC901 /* LoginController.swift */; };
+		A6F0021525FB79C600CDC901 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0021425FB79C600CDC901 /* RegisterController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		A6F0020025FB6A3F00CDC901 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		A6F0020425FB6AB200CDC901 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		A6F0020725FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem +Extensions.swift"; sourceTree = "<group>"; };
+		A6F0021025FB79BC00CDC901 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		A6F0021425FB79C600CDC901 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,7 @@
 		A6F001F825FB62CA00CDC901 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A6F0020F25FB79AA00CDC901 /* Authentication */,
 				A6F001F925FB62E800CDC901 /* ConversationsController.swift */,
 			);
 			path = Controllers;
@@ -87,6 +92,15 @@
 				A6F0020725FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A6F0020F25FB79AA00CDC901 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				A6F0021025FB79BC00CDC901 /* LoginController.swift */,
+				A6F0021425FB79C600CDC901 /* RegisterController.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,8 +176,10 @@
 				A6F001FA25FB62E800CDC901 /* ConversationsController.swift in Sources */,
 				A6F0020825FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift in Sources */,
 				A6F001D625FB5FF000CDC901 /* SceneDelegate.swift in Sources */,
+				A6F0021525FB79C600CDC901 /* RegisterController.swift in Sources */,
 				A6F0020525FB6AB200CDC901 /* UITableViewCell+Extensions.swift in Sources */,
 				A6F0020125FB6A3F00CDC901 /* UITableView+Extensions.swift in Sources */,
+				A6F0021125FB79BC00CDC901 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
