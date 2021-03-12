@@ -11,15 +11,20 @@ import UIKit
 
 class LoginController: UIViewController{
     // MARK: - Properties
+    
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
     }
-    // MARK: - Helpers
     
+    // MARK: - Helpers
     private func setupUI(){
-        self.view.backgroundColor = .yellow
+        self.view.backgroundColor = .systemPurple
+        self.navigationController?.navigationBar.isHidden = true
+        
+        self.addGradientToView(with: [UIColor.systemPurple.cgColor, UIColor.systemPink.cgColor])
     }
 }
 
