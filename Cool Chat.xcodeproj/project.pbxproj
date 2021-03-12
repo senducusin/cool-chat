@@ -13,6 +13,9 @@
 		A6F001DD25FB5FF100CDC901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F001DC25FB5FF100CDC901 /* Assets.xcassets */; };
 		A6F001E025FB5FF100CDC901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F001DE25FB5FF100CDC901 /* LaunchScreen.storyboard */; };
 		A6F001FA25FB62E800CDC901 /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F001F925FB62E800CDC901 /* ConversationsController.swift */; };
+		A6F0020125FB6A3F00CDC901 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0020025FB6A3F00CDC901 /* UITableView+Extensions.swift */; };
+		A6F0020525FB6AB200CDC901 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0020425FB6AB200CDC901 /* UITableViewCell+Extensions.swift */; };
+		A6F0020825FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0020725FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		A6F001DF25FB5FF100CDC901 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6F001E125FB5FF100CDC901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6F001F925FB62E800CDC901 /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
+		A6F0020025FB6A3F00CDC901 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		A6F0020425FB6AB200CDC901 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		A6F0020725FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem +Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		A6F001D225FB5FF000CDC901 /* Cool Chat */ = {
 			isa = PBXGroup;
 			children = (
+				A6F001FF25FB69FA00CDC901 /* Extensions */,
 				A6F001F825FB62CA00CDC901 /* Controllers */,
 				A6F001D325FB5FF000CDC901 /* AppDelegate.swift */,
 				A6F001D525FB5FF000CDC901 /* SceneDelegate.swift */,
@@ -73,6 +80,16 @@
 				A6F001F925FB62E800CDC901 /* ConversationsController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A6F001FF25FB69FA00CDC901 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A6F0020025FB6A3F00CDC901 /* UITableView+Extensions.swift */,
+				A6F0020425FB6AB200CDC901 /* UITableViewCell+Extensions.swift */,
+				A6F0020725FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +164,10 @@
 			files = (
 				A6F001D425FB5FF000CDC901 /* AppDelegate.swift in Sources */,
 				A6F001FA25FB62E800CDC901 /* ConversationsController.swift in Sources */,
+				A6F0020825FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift in Sources */,
 				A6F001D625FB5FF000CDC901 /* SceneDelegate.swift in Sources */,
+				A6F0020525FB6AB200CDC901 /* UITableViewCell+Extensions.swift in Sources */,
+				A6F0020125FB6A3F00CDC901 /* UITableView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

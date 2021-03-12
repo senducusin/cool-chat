@@ -9,12 +9,20 @@ import UIKit
 
 class ConversationsController: UIViewController {
     // MARK: - Properties
+    let tableView = UITableView.createTable()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.tableView.frame = self.view.bounds
+        
     }
     
     // MARK: - Selectors
@@ -29,7 +37,8 @@ class ConversationsController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.title = "Messages"
         
-        let image = UIImage(systemName: "person.circle.fill")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image:image, style: .plain, target: self, action: #selector(showProfileDidTap))
+        self.view.addSubview(self.tableView)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.createProfileButton(target: self, selector: #selector(showProfileDidTap))
     }
 }
