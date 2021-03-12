@@ -17,6 +17,7 @@ extension UIViewController {
         
         gradient.frame = self.view.frame
     }
+    
 }
 
 extension UIViewController {
@@ -33,7 +34,7 @@ extension UIViewController {
 //    func showLoader(_ show: Bool, withText text: String? = "Loading") {
 //        view.endEditing(true)
 //        UIViewController.hud.textLabel.text = text
-//        
+//
 //        if show {
 //            UIViewController.hud.show(in: view)
 //        } else {
