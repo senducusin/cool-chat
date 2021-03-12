@@ -7,11 +7,9 @@
 
 import UIKit
 
-import UIKit
-
 class LoginController: UIViewController{
     // MARK: - Properties
-    
+    let iconImage = UIImageView.IconImage
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -25,6 +23,10 @@ class LoginController: UIViewController{
         self.navigationController?.navigationBar.isHidden = true
         
         self.addGradientToView(with: [UIColor.systemPurple.cgColor, UIColor.systemPink.cgColor])
+        
+        self.view.addSubview(iconImage)
+        self.iconImage.translatesAutoresizingMaskIntoConstraints = false
+        
     }
 }
 

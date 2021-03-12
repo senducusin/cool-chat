@@ -18,6 +18,8 @@
 		A6F0021125FB79BC00CDC901 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0021025FB79BC00CDC901 /* LoginController.swift */; };
 		A6F0021525FB79C600CDC901 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0021425FB79C600CDC901 /* RegisterController.swift */; };
 		A6F0021825FB7B5A00CDC901 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0021725FB7B5A00CDC901 /* UIViewController+Extensions.swift */; };
+		A6F0021B25FB7D2700CDC901 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0021A25FB7D2700CDC901 /* UIImageView+Extensions.swift */; };
+		A6F0021E25FB7FA400CDC901 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0021D25FB7FA400CDC901 /* UIView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		A6F0021025FB79BC00CDC901 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		A6F0021425FB79C600CDC901 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		A6F0021725FB7B5A00CDC901 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		A6F0021A25FB7D2700CDC901 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		A6F0021D25FB7FA400CDC901 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,8 @@
 				A6F0020425FB6AB200CDC901 /* UITableViewCell+Extensions.swift */,
 				A6F0020725FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift */,
 				A6F0021725FB7B5A00CDC901 /* UIViewController+Extensions.swift */,
+				A6F0021A25FB7D2700CDC901 /* UIImageView+Extensions.swift */,
+				A6F0021D25FB7FA400CDC901 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -175,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6F0021B25FB7D2700CDC901 /* UIImageView+Extensions.swift in Sources */,
 				A6F001D425FB5FF000CDC901 /* AppDelegate.swift in Sources */,
 				A6F001FA25FB62E800CDC901 /* ConversationsController.swift in Sources */,
 				A6F0020825FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift in Sources */,
@@ -184,6 +191,7 @@
 				A6F0020525FB6AB200CDC901 /* UITableViewCell+Extensions.swift in Sources */,
 				A6F0020125FB6A3F00CDC901 /* UITableView+Extensions.swift in Sources */,
 				A6F0021125FB79BC00CDC901 /* LoginController.swift in Sources */,
+				A6F0021E25FB7FA400CDC901 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
