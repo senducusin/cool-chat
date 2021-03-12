@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImageView {
-    static let IconImage: UIImageView = {
+    static let iconImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "bubble.right")
         imageView.tintColor = .white

@@ -20,7 +20,9 @@
 		A6F0021825FB7B5A00CDC901 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0021725FB7B5A00CDC901 /* UIViewController+Extensions.swift */; };
 		A6F0021B25FB7D2700CDC901 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0021A25FB7D2700CDC901 /* UIImageView+Extensions.swift */; };
 		A6F0021E25FB7FA400CDC901 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0021D25FB7FA400CDC901 /* UIView+Extensions.swift */; };
-		A6F0022125FB81EE00CDC901 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0022025FB81EE00CDC901 /* UIButton+Extensions.swift */; };
+		A6F0022825FB9E3A00CDC901 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0022725FB9E3A00CDC901 /* InputContainerView.swift */; };
+		A6F0023025FBA0E700CDC901 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0022F25FBA0E700CDC901 /* UIImage+Extensions.swift */; };
+		A6F0023425FBA2FA00CDC901 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0023325FBA2FA00CDC901 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +41,9 @@
 		A6F0021725FB7B5A00CDC901 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		A6F0021A25FB7D2700CDC901 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		A6F0021D25FB7FA400CDC901 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		A6F0022025FB81EE00CDC901 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		A6F0022725FB9E3A00CDC901 /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
+		A6F0022F25FBA0E700CDC901 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		A6F0023325FBA2FA00CDC901 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 		A6F001D225FB5FF000CDC901 /* Cool Chat */ = {
 			isa = PBXGroup;
 			children = (
+				A6F0022625FB9E2700CDC901 /* View */,
 				A6F001FF25FB69FA00CDC901 /* Extensions */,
 				A6F001F825FB62CA00CDC901 /* Controllers */,
 				A6F001D325FB5FF000CDC901 /* AppDelegate.swift */,
@@ -100,8 +105,8 @@
 				A6F0020725FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift */,
 				A6F0021725FB7B5A00CDC901 /* UIViewController+Extensions.swift */,
 				A6F0021A25FB7D2700CDC901 /* UIImageView+Extensions.swift */,
+				A6F0022F25FBA0E700CDC901 /* UIImage+Extensions.swift */,
 				A6F0021D25FB7FA400CDC901 /* UIView+Extensions.swift */,
-				A6F0022025FB81EE00CDC901 /* UIButton+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -113,6 +118,15 @@
 				A6F0021425FB79C600CDC901 /* RegisterController.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		A6F0022625FB9E2700CDC901 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A6F0022725FB9E3A00CDC901 /* InputContainerView.swift */,
+				A6F0023325FBA2FA00CDC901 /* CustomTextField.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,13 +199,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6F0021B25FB7D2700CDC901 /* UIImageView+Extensions.swift in Sources */,
-				A6F0022125FB81EE00CDC901 /* UIButton+Extensions.swift in Sources */,
 				A6F001D425FB5FF000CDC901 /* AppDelegate.swift in Sources */,
+				A6F0023425FBA2FA00CDC901 /* CustomTextField.swift in Sources */,
+				A6F0023025FBA0E700CDC901 /* UIImage+Extensions.swift in Sources */,
 				A6F001FA25FB62E800CDC901 /* ConversationsController.swift in Sources */,
 				A6F0020825FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift in Sources */,
 				A6F001D625FB5FF000CDC901 /* SceneDelegate.swift in Sources */,
 				A6F0021825FB7B5A00CDC901 /* UIViewController+Extensions.swift in Sources */,
 				A6F0021525FB79C600CDC901 /* RegisterController.swift in Sources */,
+				A6F0022825FB9E3A00CDC901 /* InputContainerView.swift in Sources */,
 				A6F0020525FB6AB200CDC901 /* UITableViewCell+Extensions.swift in Sources */,
 				A6F0020125FB6A3F00CDC901 /* UITableView+Extensions.swift in Sources */,
 				A6F0021125FB79BC00CDC901 /* LoginController.swift in Sources */,
