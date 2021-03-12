@@ -13,6 +13,7 @@
 		A6F001DB25FB5FF000CDC901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F001D925FB5FF000CDC901 /* Main.storyboard */; };
 		A6F001DD25FB5FF100CDC901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F001DC25FB5FF100CDC901 /* Assets.xcassets */; };
 		A6F001E025FB5FF100CDC901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F001DE25FB5FF100CDC901 /* LaunchScreen.storyboard */; };
+		A6F001FA25FB62E800CDC901 /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F001F925FB62E800CDC901 /* ConversationsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A6F001DC25FB5FF100CDC901 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6F001DF25FB5FF100CDC901 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6F001E125FB5FF100CDC901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6F001F925FB62E800CDC901 /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		A6F001D225FB5FF000CDC901 /* Cool Chat */ = {
 			isa = PBXGroup;
 			children = (
+				A6F001F825FB62CA00CDC901 /* Controllers */,
 				A6F001D325FB5FF000CDC901 /* AppDelegate.swift */,
 				A6F001D525FB5FF000CDC901 /* SceneDelegate.swift */,
 				A6F001D725FB5FF000CDC901 /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				A6F001E125FB5FF100CDC901 /* Info.plist */,
 			);
 			path = "Cool Chat";
+			sourceTree = "<group>";
+		};
+		A6F001F825FB62CA00CDC901 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A6F001F925FB62E800CDC901 /* ConversationsController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			files = (
 				A6F001D825FB5FF000CDC901 /* ViewController.swift in Sources */,
 				A6F001D425FB5FF000CDC901 /* AppDelegate.swift in Sources */,
+				A6F001FA25FB62E800CDC901 /* ConversationsController.swift in Sources */,
 				A6F001D625FB5FF000CDC901 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
