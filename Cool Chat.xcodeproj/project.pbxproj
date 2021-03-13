@@ -12,6 +12,7 @@
 		A635181525FC690A00A21E73 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635181425FC690A00A21E73 /* Encodable+Extensions.swift */; };
 		A635181A25FC8EF500A21E73 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635181925FC8EF500A21E73 /* AuthService.swift */; };
 		A635181F25FCA16300A21E73 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635181E25FCA16300A21E73 /* MessageType.swift */; };
+		A635182225FCBBE800A21E73 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182125FCBBE800A21E73 /* NewMessageController.swift */; };
 		A693B2FD25FC338000C6B2D8 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */; };
 		A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */; };
 		A693B30D25FC483E00C6B2D8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */; };
@@ -42,6 +43,7 @@
 		A635181425FC690A00A21E73 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		A635181925FC8EF500A21E73 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		A635181E25FCA16300A21E73 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
+		A635182125FCBBE800A21E73 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				A6F0020F25FB79AA00CDC901 /* Authentication */,
 				A6F001F925FB62E800CDC901 /* ConversationsController.swift */,
+				A635182125FCBBE800A21E73 /* NewMessageController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				A635181F25FCA16300A21E73 /* MessageType.swift in Sources */,
 				A6F001D625FB5FF000CDC901 /* SceneDelegate.swift in Sources */,
 				A635181125FC66B000A21E73 /* RegistrationCredential.swift in Sources */,
+				A635182225FCBBE800A21E73 /* NewMessageController.swift in Sources */,
 				A693B31025FC4C7200C6B2D8 /* RegisterViewModel.swift in Sources */,
 				A6F0021825FB7B5A00CDC901 /* UIViewController+Extensions.swift in Sources */,
 				A6F0021525FB79C600CDC901 /* RegisterController.swift in Sources */,

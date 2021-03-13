@@ -9,4 +9,5 @@ import UIKit
 
 extension UITableViewCell{
     static public let conversationTVCellIdentifier = "ConversationTableViewCell"
+    static public let newMessageTVCellIdentifier = "NewMessageTableViewCell"
 }

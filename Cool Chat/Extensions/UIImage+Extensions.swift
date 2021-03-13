@@ -28,4 +28,9 @@ extension UIImage {
         let image = UIImage(systemName: "person")
         return image
     }()
+    
+    static let conversationPlusIcon: UIImage? = {
+        let image = UIImage(systemName: "plus")
+        return image
+    }()
 }

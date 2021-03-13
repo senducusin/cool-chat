@@ -133,6 +133,10 @@ class RegisterController: UIViewController{
         }
     }
     
+    @objc func cancelButtonDidTap(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Helpers
     private func setupNotificationObservers(for textFields:[UITextField]){
         for textField in textFields {
@@ -166,6 +170,8 @@ class RegisterController: UIViewController{
         self.alreadyHaveAnAccountButton.anchor(left:self.view.leftAnchor, bottom:self.view.safeAreaLayoutGuide.bottomAnchor, right: self.view.rightAnchor, paddingLeft: 32, paddingRight: 32)
         
         self.setupNotificationObservers(for: [self.emailTextField, self.fullNameTextField, self.usernameTextField, self.passwordTextField])
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonDidTap))
     }
 
 }
@@ -177,9 +183,12 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
         
         let image = info[.originalImage] as? UIImage
         self.profileImage = image
-        self.addPhotoButton.setBackgroundImage(image, for: .normal)
+        self.addPhotoButton.setBackgroundImage(nil, for: .normal)
+        self.addPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         self.addPhotoButton.layer.cornerRadius = 200 / 2
         self.addPhotoButton.layer.masksToBounds = true
+        self.addPhotoButton.imageView?.clipsToBounds = true
+        self.addPhotoButton.imageView?.contentMode = .scaleAspectFill
         
         dismiss(animated: true, completion: nil)
     }

@@ -12,6 +12,15 @@ class ConversationsController: UIViewController {
     // MARK: - Properties
     let tableView = UITableView.createTable()
     
+    private let newMessageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage.conversationPlusIcon, for: .normal)
+        button.backgroundColor = .systemPurple
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(newMessageButtonDidTap), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -35,12 +44,16 @@ class ConversationsController: UIViewController {
         
     }
     
+    @objc private func newMessageButtonDidTap(){
+        let newMessageController = NewMessageController()
+        let nav = UINavigationController(rootViewController: newMessageController)
+        present(nav,animated: true, completion: nil)
+    }
+    
     // MARK: - API
     func authenticateUser(){
         if Auth.auth().currentUser?.uid == nil {
             self.presentLoginScreen(animated: false)
-        } else {
-            print("DEBUG: User id is \(Auth.auth().currentUser?.uid)")
         }
     }
     
@@ -76,6 +89,11 @@ class ConversationsController: UIViewController {
         self.view.addSubview(self.tableView)
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.createProfileButton(target: self, selector: #selector(showProfileDidTap))
+        
+        self.view.addSubview(self.newMessageButton)
+        self.newMessageButton.setDimensions(height: 56, width: 56)
+        self.newMessageButton.layer.cornerRadius = 56 / 2
+        self.newMessageButton.anchor(bottom:view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 16, paddingRight: 24)
     }
 }
 
