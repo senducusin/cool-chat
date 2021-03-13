@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ConversationsController: UIViewController {
     // MARK: - Properties
@@ -15,6 +16,7 @@ class ConversationsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.authenticateUser()
         self.setupUI()
         self.setupTableView()
     }
@@ -26,10 +28,38 @@ class ConversationsController: UIViewController {
     
     // MARK: - Selectors
     @objc private func showProfileDidTap(){
-        print("tapped!")
+        /*
+         Temporary Codes
+         */
+        self.logoutUser()
+    }
+    
+    // MARK: - API
+    func authenticateUser(){
+        if Auth.auth().currentUser?.uid == nil {
+            self.presentLoginScreen()
+        } else {
+            print("DEBUG: User id is \(Auth.auth().currentUser?.uid)")
+        }
+    }
+    
+    func logoutUser(){
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
     // MARK: - Helpers
+    private func presentLoginScreen(){
+        DispatchQueue.main.async {
+            let loginController = LoginController()
+            let nav = UINavigationController(rootViewController: loginController)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: false, completion: nil)
+        }
+    }
     
     private func setupTableView(){
         self.tableView.delegate = self

@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     private func configureNavigationBarAppearance(){
         let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.backgroundColor = UIColor(displayP3Red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
+        navigationBarAppearance.backgroundColor = .systemPurple
         
         navigationBarAppearance.titleTextAttributes = [.foregroundColor:UIColor.white]
         navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor:UIColor.white]
