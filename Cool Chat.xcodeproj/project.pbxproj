@@ -11,6 +11,7 @@
 		A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */; };
 		A693B30D25FC483E00C6B2D8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */; };
 		A693B31025FC4C7200C6B2D8 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30F25FC4C7200C6B2D8 /* RegisterViewModel.swift */; };
+		A693B31625FC5E1000C6B2D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A693B31525FC5E1000C6B2D8 /* GoogleService-Info.plist */; };
 		A6F001D425FB5FF000CDC901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F001D325FB5FF000CDC901 /* AppDelegate.swift */; };
 		A6F001D625FB5FF000CDC901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F001D525FB5FF000CDC901 /* SceneDelegate.swift */; };
 		A6F001DD25FB5FF100CDC901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F001DC25FB5FF100CDC901 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A693B30F25FC4C7200C6B2D8 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		A693B31525FC5E1000C6B2D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A6F001D025FB5FF000CDC901 /* Cool Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cool Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F001D325FB5FF000CDC901 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6F001D525FB5FF000CDC901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				A6F001D525FB5FF000CDC901 /* SceneDelegate.swift */,
 				A6F001DC25FB5FF100CDC901 /* Assets.xcassets */,
 				A6F001DE25FB5FF100CDC901 /* LaunchScreen.storyboard */,
+				A693B31525FC5E1000C6B2D8 /* GoogleService-Info.plist */,
 				A6F001E125FB5FF100CDC901 /* Info.plist */,
 			);
 			path = "Cool Chat";
@@ -216,6 +219,7 @@
 			files = (
 				A6F001E025FB5FF100CDC901 /* LaunchScreen.storyboard in Resources */,
 				A6F001DD25FB5FF100CDC901 /* Assets.xcassets in Resources */,
+				A693B31625FC5E1000C6B2D8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
