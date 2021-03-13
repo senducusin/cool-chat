@@ -72,7 +72,7 @@ extension AuthService {
         }
         Auth.auth().createUser(withEmail: credential.email, password: credential.password) { (result, error) in
             guard error == nil else{
-                completion(.registrationError)
+                completion(.registrationErrorTryAnotherEmailAddress)
                 return
             }
             
