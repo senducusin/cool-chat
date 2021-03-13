@@ -49,8 +49,8 @@ class LoginController: UIViewController{
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            guard error == nil else {
+        AuthService.shared.logUserIn(withEmail: email, password: password) { (result, error) in
+            guard error == nil else{
                 if let error = error {
                     print(error.localizedDescription)
                 }

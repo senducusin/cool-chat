@@ -1,5 +1,5 @@
 //
-//  NewUser.swift
+//  RegistrationCredential.swift
 //  Cool Chat
 //
 //  Created by Jansen Ducusin on 3/13/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewUser : Encodable{
+struct RegistrationCredential : Encodable{
     var fullname:String
     var email:String
     var username:String

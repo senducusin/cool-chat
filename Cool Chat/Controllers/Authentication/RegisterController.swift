@@ -82,12 +82,16 @@ class RegisterController: UIViewController{
             return
         }
         
-        let newUser = NewUser(fullname: fullName, email: email, username: username, password: password)
+        let newUserCredential = RegistrationCredential(fullname: fullName, email: email, username: username, password: password)
         
-        if let profileImage = self.profileImage {
-            self.uploadProfilePictureToFirebaseThenRegister(profileImage: profileImage, newUser: newUser)
-        }else {
-            self.registerUserToFirebase(newUser: newUser)
+        AuthService.shared.createUser(withCredential: newUserCredential, profileImage: self.profileImage) { (error) in
+            guard error == nil else {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -114,55 +118,6 @@ class RegisterController: UIViewController{
     }
     
     // MARK: - Helpers
-    private func uploadProfilePictureToFirebaseThenRegister(profileImage: UIImage, newUser:NewUser?){
-        guard let imageData = profileImage.jpegData(compressionQuality: 0.3),
-              var newUser = newUser else {return}
-        let filename = NSUUID().uuidString
-        let ref = Storage.storage().reference(withPath: "/profile_images/\(filename)")
-        
-        ref.putData(imageData, metadata: nil) { meta, error  in
-            guard error == nil else {
-                if let error = error {
-                    print("DEBUG: \(error.localizedDescription)")
-                }
-                return
-            }
-            
-            ref.downloadURL { (url, error) in
-                guard let profileImageUrl = url?.absoluteString else {return}
-                newUser.profileImageUrl = profileImageUrl
-                self.registerUserToFirebase(newUser: newUser)
-            }
-        }
-    }
-    
-    private func registerUserToFirebase(newUser:NewUser?){
-        guard var newUser = newUser else {return}
-        Auth.auth().createUser(withEmail: newUser.email, password: newUser.password) { (result, error) in
-            guard error == nil else{
-                if let error = error {
-                    print("DEBUG: \(error.localizedDescription)")
-                }
-                return
-            }
-            
-            guard let uid = result?.user.uid else {return}
-            newUser.uid = uid
-            
-            guard let data = newUser.toDictionary() else {return}
-            
-            Firestore.firestore().collection("users").document(uid).setData(data) { (error) in
-                guard error == nil else {
-                    if let error = error {
-                        print("DEBUG: \(error.localizedDescription)")
-                    }
-                    return
-                }
-            }
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
     private func setupNotificationObservers(for textFields:[UITextField]){
         for textField in textFields {
             textField.addTarget(self, action: #selector(self.textDidChange(sender:)), for: .editingChanged)
