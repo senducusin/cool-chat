@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterController: UIViewController{
     // MARK: - Properties
@@ -58,6 +59,7 @@ class RegisterController: UIViewController{
     private let alreadyHaveAnAccountButton =  UIButton.createAuthAttributedButton(regularString: "Already have an account? ", highlightedString: "Log In", target:self, selector: #selector(alreadyHaveAnAccountButtonDidTap) )
     
     private var registerViewModel = RegisterViewModel()
+    private var profileImage: UIImage?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -73,7 +75,20 @@ class RegisterController: UIViewController{
     }
     
     @objc func signUpDidTap(){
-        print("trying to signup")
+        guard let email = self.emailTextField.text,
+              let username = self.usernameTextField.text?.lowercased(),
+              let fullName = self.fullNameTextField.text,
+              let password = self.passwordTextField.text else {
+            return
+        }
+        
+        let newUser = NewUser(fullname: fullName, email: email, username: username, password: password)
+        
+        if let profileImage = self.profileImage {
+            self.uploadProfilePictureToFirebaseThenRegister(profileImage: profileImage, newUser: newUser)
+        }else {
+            self.registerUserToFirebase(newUser: newUser)
+        }
     }
     
     @objc func alreadyHaveAnAccountButtonDidTap(){
@@ -99,6 +114,53 @@ class RegisterController: UIViewController{
     }
     
     // MARK: - Helpers
+    private func uploadProfilePictureToFirebaseThenRegister(profileImage: UIImage, newUser:NewUser?){
+        guard let imageData = profileImage.jpegData(compressionQuality: 0.3),
+              var newUser = newUser else {return}
+        let filename = NSUUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/profile_images/\(filename)")
+        
+        ref.putData(imageData, metadata: nil) { meta, error  in
+            guard error == nil else {
+                if let error = error {
+                    print("DEBUG: \(error.localizedDescription)")
+                }
+                return
+            }
+            
+            ref.downloadURL { (url, error) in
+                guard let profileImageUrl = url?.absoluteString else {return}
+                newUser.profileImageUrl = profileImageUrl
+                self.registerUserToFirebase(newUser: newUser)
+            }
+        }
+    }
+    
+    private func registerUserToFirebase(newUser:NewUser?){
+        guard var newUser = newUser else {return}
+        Auth.auth().createUser(withEmail: newUser.email, password: newUser.password) { (result, error) in
+            guard error == nil else{
+                if let error = error {
+                    print("DEBUG: \(error.localizedDescription)")
+                }
+                return
+            }
+            
+            guard let uid = result?.user.uid else {return}
+            newUser.uid = uid
+            
+            guard let data = newUser.toDictionary() else {return}
+            
+            print(data)
+            Firestore.firestore().collection("users").document(uid).setData(data) { (error) in
+                if let error = error {
+                    print("DEBUG: \(error.localizedDescription)")
+                }
+            }
+            print("DEBUG: Did create user..")
+        }
+    }
+    
     private func setupNotificationObservers(for textFields:[UITextField]){
         for textField in textFields {
             textField.addTarget(self, action: #selector(self.textDidChange(sender:)), for: .editingChanged)
@@ -137,6 +199,7 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let image = info[.originalImage] as? UIImage
+        self.profileImage = image
         self.addPhotoButton.setBackgroundImage(image, for: .normal)
         self.addPhotoButton.layer.cornerRadius = 200 / 2
         self.addPhotoButton.layer.masksToBounds = true
