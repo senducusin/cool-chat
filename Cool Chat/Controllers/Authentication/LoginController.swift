@@ -49,13 +49,18 @@ class LoginController: UIViewController{
             return
         }
         
+        self.showLoader(true, withText: "Logging in")
+        
         AuthService.shared.logUserIn(withEmail: email, password: password) { (result, error) in
             guard error == nil else{
                 if let error = error {
                     print(error.localizedDescription)
+                    self.showQuickMessage(withText: error.localizedDescription, messageType: .error)
                 }
+                
                 return
             }
+            self.showLoader(false)
             self.dismiss(animated: true, completion: nil)
         }
     }

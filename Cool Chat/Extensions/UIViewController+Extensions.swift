@@ -39,13 +39,28 @@ extension UIViewController {
     
     func showLoader(_ show: Bool, withText text: String? = "Loading") {
         view.endEditing(true)
-        UIViewController.hud.textLabel.text = text
-
+        UIViewController.hud.indicatorView = JGProgressHUDIndeterminateIndicatorView()
         if show {
+            UIViewController.hud.textLabel.text = text
             UIViewController.hud.show(in: view)
         } else {
             UIViewController.hud.dismiss()
         }
+    }
+    
+    func showQuickMessage(withText text:String, messageType:QuickMessageType = .null){
+        switch  messageType {
+        case .success:
+            UIViewController.hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+        case .error:
+            UIViewController.hud.indicatorView = JGProgressHUDErrorIndicatorView()
+        case .null:
+            UIViewController.hud.indicatorView = nil
+        }
+        
+        UIViewController.hud.textLabel.text = text
+        UIViewController.hud.show(in: self.view)
+        UIViewController.hud.dismiss(afterDelay: 1.5)
     }
     
     func configureNavigationBar(withTitle title: String, prefersLargeTitles: Bool) {
