@@ -26,7 +26,7 @@ struct AuthService{
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
     }
     
-    func createUser(withCredential credential:RegistrationCredential, profileImage:UIImage?, completion:@escaping(RegistrationError?)->()){
+    func createUser(withCredential credential:RegistrationCredential, profileImage:UIImage?, completion:@escaping(Error?)->()){
         if let profileImage = profileImage {
             self.uploadProfilePictureToFirebaseThenRegister(profileImage: profileImage, credential: credential, completion: completion)
         }else {
@@ -36,10 +36,10 @@ struct AuthService{
 }
 
 extension AuthService {
-    private func uploadProfilePictureToFirebaseThenRegister(profileImage: UIImage, credential:RegistrationCredential?, completion:@escaping((RegistrationError?)->())){
+    private func uploadProfilePictureToFirebaseThenRegister(profileImage: UIImage, credential:RegistrationCredential?, completion:@escaping((Error?)->())){
         guard let imageData = profileImage.jpegData(compressionQuality: 0.3),
               var newUser = credential else {
-            completion(.imageCompressionError)
+            completion(RegistrationError.imageCompressionError)
             return
         }
         
@@ -48,13 +48,21 @@ extension AuthService {
         
         ref.putData(imageData, metadata: nil) { meta, error  in
             guard error == nil else {
-                completion(.uploadImageError)
+                if let error = error {
+                    completion(error)
+                }
                 return
             }
             
             ref.downloadURL { (url, error) in
-                guard let profileImageUrl = url?.absoluteString else {
-                    completion(.invalidUrlFormat)
+                guard let profileImageUrl = url?.absoluteString,
+                      error == nil else {
+                    if let error = error {
+                        completion(error)
+                    }else {
+                        completion(RegistrationError.invalidUrlFormat)
+                    }
+                    
                     return
                 }
                 newUser.profileImageUrl = profileImageUrl
@@ -65,40 +73,40 @@ extension AuthService {
         }
     }
     
-    private func registerUserToFirebase(credential:RegistrationCredential?, completion:@escaping((RegistrationError?)->())){
+    private func registerUserToFirebase(credential:RegistrationCredential?, completion:@escaping((Error?)->())){
         guard var credential = credential else {
-            completion(.invalidCredential)
+            completion(RegistrationError.invalidCredential)
             return
         }
         Auth.auth().createUser(withEmail: credential.email, password: credential.password) { (result, error) in
             guard error == nil else{
-                completion(.registrationErrorTryAnotherEmailAddress)
+                if let error = error {
+                    completion(error)
+                }
                 return
             }
             
             guard let uid = result?.user.uid else {
-                completion(.unableToRetrieveUID)
+                completion(RegistrationError.unableToRetrieveUID)
                 return
             }
             credential.uid = uid
             
             guard let data = credential.toDictionary() else {
-                completion(.invalidData)
+                completion(RegistrationError.invalidData)
                 return
             }
             
             Firestore.firestore().collection("users").document(uid).setData(data) { (error) in
                 guard error == nil else {
                     if let error = error {
-                        print("DEBUG: \(error.localizedDescription)")
+                        completion(error)
                     }
-                    completion(.fireStoreError)
                     return
                 }
             }
             
             completion(nil)
-//            self.dismiss(animated: true, completion: nil)
         }
     }
 }
