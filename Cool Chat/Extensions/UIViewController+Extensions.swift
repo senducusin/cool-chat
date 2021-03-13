@@ -49,18 +49,22 @@ extension UIViewController {
     }
     
     func showQuickMessage(withText text:String, messageType:QuickMessageType = .null){
-        switch  messageType {
-        case .success:
-            UIViewController.hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-        case .error:
-            UIViewController.hud.indicatorView = JGProgressHUDErrorIndicatorView()
-        case .null:
-            UIViewController.hud.indicatorView = nil
+       
+        UIViewController.hud.dismiss()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.52) {
+            switch  messageType {
+            case .success:
+                UIViewController.hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+            case .error:
+                UIViewController.hud.indicatorView = JGProgressHUDErrorIndicatorView()
+            case .null:
+                UIViewController.hud.indicatorView = nil
+            }
+            
+            UIViewController.hud.textLabel.text = text
+            UIViewController.hud.show(in: self.view)
+            UIViewController.hud.dismiss(afterDelay: 2)
         }
-        
-        UIViewController.hud.textLabel.text = text
-        UIViewController.hud.show(in: self.view)
-        UIViewController.hud.dismiss(afterDelay: 1.5)
     }
     
     func configureNavigationBar(withTitle title: String, prefersLargeTitles: Bool) {

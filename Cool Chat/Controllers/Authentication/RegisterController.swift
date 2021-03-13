@@ -82,15 +82,19 @@ class RegisterController: UIViewController{
             return
         }
         
+        self.showLoader(true)
+        
         let newUserCredential = RegistrationCredential(fullname: fullName, email: email, username: username, password: password)
         
         AuthService.shared.createUser(withCredential: newUserCredential, profileImage: self.profileImage) { (error) in
             guard error == nil else {
                 if let error = error {
                     print(error.localizedDescription)
+                    self.showQuickMessage(withText: error.localizedDescription, messageType: .error)
                 }
                 return
             }
+            self.showLoader(false)
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -117,11 +121,27 @@ class RegisterController: UIViewController{
         self.checkFormStatus()
     }
     
+    @objc func keyboardWillShow(){
+        if view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= 88
+        }
+    }
+    
+    @objc func keyboardWillHide(){
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
+        }
+    }
+    
     // MARK: - Helpers
     private func setupNotificationObservers(for textFields:[UITextField]){
         for textField in textFields {
             textField.addTarget(self, action: #selector(self.textDidChange(sender:)), for: .editingChanged)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func checkFormStatus(){
