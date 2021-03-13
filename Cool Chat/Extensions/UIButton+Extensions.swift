@@ -16,6 +16,7 @@ extension UIButton {
         button.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(vc, action: selector, for: .touchUpInside)
+        button.isEnabled = false
         return button
     }
     

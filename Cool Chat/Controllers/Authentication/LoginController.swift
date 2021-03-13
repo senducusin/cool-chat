@@ -13,7 +13,7 @@ class LoginController: UIViewController{
     let loginButton = UIButton.createAuthButton(title: "Log in", vc: self, selector: #selector(loginDidTap))
     let dontHaveAnAccountButton = UIButton.createAuthAttributedButton(regularString: "Don't have an account? ", highlightedString: "Sign Up", target:self, selector: #selector(dontHaveAnAccountButtonDidTap) )
     
-    // Password View/Field
+    /// Password View/Field
     let passwordTextField: CustomTextField = {
         let textField = CustomTextField(placeholder: "Password")
         textField.isSecureTextEntry = true
@@ -24,12 +24,14 @@ class LoginController: UIViewController{
         return InputContainerView(image: UIImage.loginPasswordIcon, textField: self.passwordTextField)
     }()
     
-    // Email View/Fields
+    /// Email View/Fields
     let emailTextField = CustomTextField(placeholder: "Email")
     
     private lazy var emailView: InputContainerView = {
         return InputContainerView(image: UIImage.loginEmailIcon, textField: self.emailTextField)
     }()
+    
+    private var loginViewModel = LoginViewModel()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -47,7 +49,27 @@ class LoginController: UIViewController{
         navigationController?.pushViewController(registrationController, animated: true)
     }
     
+    @objc func textDidChange(sender: UITextField){
+        if sender == self.emailTextField {
+            self.loginViewModel.email = sender.text
+        }else {
+            self.loginViewModel.password = sender.text
+        }
+        
+        self.checkFormStatus()
+    }
+    
     // MARK: - Helpers
+    private func checkFormStatus(){
+        if self.loginViewModel.formIsValid {
+            self.loginButton.isEnabled = true
+            self.loginButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        }else{
+            self.loginButton.isEnabled = false
+            self.loginButton.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        }
+    }
+    
     private func setupUI(){
         self.view.backgroundColor = .systemPurple
         self.navigationController?.navigationBar.isHidden = true
@@ -62,7 +84,8 @@ class LoginController: UIViewController{
         
         self.dontHaveAnAccountButton.anchor(left:self.view.leftAnchor, bottom:self.view.safeAreaLayoutGuide.bottomAnchor, right: self.view.rightAnchor, paddingLeft: 32, paddingRight: 32)
         
-        
+        self.emailTextField.addTarget(self, action: #selector(textDidChange(sender:)), for: .editingChanged)
+        self.passwordTextField.addTarget(self, action: #selector(textDidChange(sender:)), for: .editingChanged)
     }
 }
 
