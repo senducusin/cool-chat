@@ -7,9 +7,13 @@
 
 import UIKit
 
+protocol CustomInputAccessoryViewDelegate: class {
+    func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message:String)
+}
+
 class CustomInputAccessoryView: UIView {
     // MARK: - Properties
-    private let messageInputTextView: UITextView = {
+    public let messageInputTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.isScrollEnabled = false
@@ -24,7 +28,7 @@ class CustomInputAccessoryView: UIView {
         button.addTarget(self, action: #selector(sendButtonDidTap), for: .touchUpInside)
         return button
     }()
-    
+     
     private let placeholderLabel: UILabel = {
         let label  = UILabel()
         label.text = "Enter Message"
@@ -32,6 +36,8 @@ class CustomInputAccessoryView: UIView {
         label.textColor = .lightGray
         return label
     }()
+    
+    weak var delegate: CustomInputAccessoryViewDelegate?
     
     // MARK: - Lifecycle
     
@@ -69,7 +75,8 @@ class CustomInputAccessoryView: UIView {
     
     // MARK: - Selectors
     @objc func sendButtonDidTap(){
-        print("Sending message")
+        guard let message = self.messageInputTextView.text else {return}
+        self.delegate?.inputView(self, wantsToSend: message)
     }
     
     @objc func messageInputDidChange() {
