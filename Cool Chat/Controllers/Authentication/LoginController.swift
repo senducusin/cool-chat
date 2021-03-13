@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginController: UIViewController{
     // MARK: - Properties
@@ -41,7 +42,22 @@ class LoginController: UIViewController{
     
     // MARK: - Selectors
     @objc func loginDidTap(){
-        print("trying to log in")
+        
+        guard let email = self.emailTextField.text,
+              let password = self.passwordTextField.text else {
+            print("DEBUG: Failed to get textfield values")
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            guard error == nil else {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func dontHaveAnAccountButtonDidTap(){

@@ -32,12 +32,13 @@ class ConversationsController: UIViewController {
          Temporary Codes
          */
         self.logoutUser()
+        
     }
     
     // MARK: - API
     func authenticateUser(){
         if Auth.auth().currentUser?.uid == nil {
-            self.presentLoginScreen()
+            self.presentLoginScreen(animated: false)
         } else {
             print("DEBUG: User id is \(Auth.auth().currentUser?.uid)")
         }
@@ -46,18 +47,19 @@ class ConversationsController: UIViewController {
     func logoutUser(){
         do {
             try Auth.auth().signOut()
+            presentLoginScreen(animated: true)
         } catch let error {
             print(error.localizedDescription)
         }
     }
     
     // MARK: - Helpers
-    private func presentLoginScreen(){
+    private func presentLoginScreen(animated: Bool){
         DispatchQueue.main.async {
             let loginController = LoginController()
             let nav = UINavigationController(rootViewController: loginController)
             nav.modalPresentationStyle = .fullScreen
-            self.present(nav, animated: false, completion: nil)
+            self.present(nav, animated: animated, completion: nil)
         }
     }
     

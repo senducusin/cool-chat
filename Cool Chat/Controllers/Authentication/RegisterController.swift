@@ -151,13 +151,15 @@ class RegisterController: UIViewController{
             
             guard let data = newUser.toDictionary() else {return}
             
-            print(data)
             Firestore.firestore().collection("users").document(uid).setData(data) { (error) in
-                if let error = error {
-                    print("DEBUG: \(error.localizedDescription)")
+                guard error == nil else {
+                    if let error = error {
+                        print("DEBUG: \(error.localizedDescription)")
+                    }
+                    return
                 }
             }
-            print("DEBUG: Did create user..")
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
