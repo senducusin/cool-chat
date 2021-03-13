@@ -20,7 +20,7 @@ extension UIImage {
     }()
     
     static let registerPhotoImage: UIImage? = {
-        let image = UIImage(systemName: "person.circle")
+        let image = UIImage(systemName: "person.fill")
         return image
     }()
     
