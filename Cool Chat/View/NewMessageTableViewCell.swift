@@ -34,6 +34,10 @@ class NewMessageTableViewCell: UITableViewCell {
         return label
     }()
     
+    var user: User? {
+        didSet { configure() }
+    }
+    
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -67,9 +71,14 @@ class NewMessageTableViewCell: UITableViewCell {
         stack.centerY(inView: self.profileImageView, leftAnchor:  self.profileImageView.rightAnchor, paddingLeft: 12)
     }
     
-    public func configure(user:User){
-        self.fullnameLabel.text = user.fullname
-        self.usernameLabel.text = user.username
-        self.profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
+    public func configure(){
+        
+        if let user = user {
+            self.fullnameLabel.text = user.fullname
+            
+            self.usernameLabel.text = user.username
+            
+            self.profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
+        }
     }
 }

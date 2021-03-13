@@ -16,6 +16,7 @@
 		A635182525FCC50200A21E73 /* NewMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182425FCC50200A21E73 /* NewMessageTableViewCell.swift */; };
 		A635182825FCC92E00A21E73 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182725FCC92E00A21E73 /* User.swift */; };
 		A635182B25FCCB7400A21E73 /* FirebaseWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182A25FCCB7400A21E73 /* FirebaseWebService.swift */; };
+		A635182F25FCF63C00A21E73 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182E25FCF63C00A21E73 /* ChatController.swift */; };
 		A693B2FD25FC338000C6B2D8 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */; };
 		A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */; };
 		A693B30D25FC483E00C6B2D8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */; };
@@ -50,6 +51,7 @@
 		A635182425FCC50200A21E73 /* NewMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageTableViewCell.swift; sourceTree = "<group>"; };
 		A635182725FCC92E00A21E73 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A635182A25FCCB7400A21E73 /* FirebaseWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWebService.swift; sourceTree = "<group>"; };
+		A635182E25FCF63C00A21E73 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				A6F0020F25FB79AA00CDC901 /* Authentication */,
 				A6F001F925FB62E800CDC901 /* ConversationsController.swift */,
 				A635182125FCBBE800A21E73 /* NewMessageController.swift */,
+				A635182E25FCF63C00A21E73 /* ChatController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				A6F0021825FB7B5A00CDC901 /* UIViewController+Extensions.swift in Sources */,
 				A6F0021525FB79C600CDC901 /* RegisterController.swift in Sources */,
 				A6F0022825FB9E3A00CDC901 /* InputContainerView.swift in Sources */,
+				A635182F25FCF63C00A21E73 /* ChatController.swift in Sources */,
 				A693B30D25FC483E00C6B2D8 /* LoginViewModel.swift in Sources */,
 				A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */,
 				A6F0020525FB6AB200CDC901 /* UITableViewCell+Extensions.swift in Sources */,
