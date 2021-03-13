@@ -11,7 +11,7 @@ struct RegistrationCredential : Encodable{
     var fullname:String
     var email:String
     var username:String
-    var password:String
+    var password:String?
     var profileImageUrl:String?
     var uid:String?
 }

@@ -9,14 +9,33 @@ import UIKit
 
 class NewMessageController: UITableViewController {
     // MARK: - Properties
+    var users = [User]()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.fetchUsers()
         self.setupUI()
     }
     
     @objc func cancelButtonDidTap(){
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - API
+    private func fetchUsers(){
+        FirebaseWebService.fetchUsers { result in
+            switch(result){
+            
+            case .success(let users):
+                self.users = users
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                self.showQuickMessage(withText: error.localizedDescription, messageType: .error)
+            }
+        }
     }
     
     // MARK: - Helpers
@@ -36,12 +55,19 @@ class NewMessageController: UITableViewController {
 // MARK: - UITableViewDataSource
 extension NewMessageController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.newMessageTVCellIdentifier, for: indexPath) as! NewMessageTableViewCell
         
+        let user = users[indexPath.row]
+        cell.configure(user: user)
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
 }

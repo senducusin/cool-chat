@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class NewMessageTableViewCell: UITableViewCell {
     
@@ -64,5 +65,11 @@ class NewMessageTableViewCell: UITableViewCell {
         stack.spacing = 2
         addSubview(stack)
         stack.centerY(inView: self.profileImageView, leftAnchor:  self.profileImageView.rightAnchor, paddingLeft: 12)
+    }
+    
+    public func configure(user:User){
+        self.fullnameLabel.text = user.fullname
+        self.usernameLabel.text = user.username
+        self.profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
     }
 }

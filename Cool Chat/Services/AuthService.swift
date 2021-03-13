@@ -38,7 +38,7 @@ struct AuthService{
 extension AuthService {
     private func uploadProfilePictureToFirebaseThenRegister(profileImage: UIImage, credential:RegistrationCredential?, completion:@escaping((Error?)->())){
         guard let imageData = profileImage.jpegData(compressionQuality: 0.3),
-              var newUser = credential else {
+              var credential = credential else {
             completion(RegistrationError.imageCompressionError)
             return
         }
@@ -65,7 +65,7 @@ extension AuthService {
                     
                     return
                 }
-                newUser.profileImageUrl = profileImageUrl
+                credential.profileImageUrl = profileImageUrl
                 self.registerUserToFirebase(credential: credential) { (error) in
                     completion(error)
                 }
@@ -74,11 +74,12 @@ extension AuthService {
     }
     
     private func registerUserToFirebase(credential:RegistrationCredential?, completion:@escaping((Error?)->())){
-        guard var credential = credential else {
+        guard var credential = credential,
+              let credentialPassword = credential.password else {
             completion(RegistrationError.invalidCredential)
             return
         }
-        Auth.auth().createUser(withEmail: credential.email, password: credential.password) { (result, error) in
+        Auth.auth().createUser(withEmail: credential.email, password: credentialPassword) { (result, error) in
             guard error == nil else{
                 if let error = error {
                     completion(error)
@@ -91,6 +92,7 @@ extension AuthService {
                 return
             }
             credential.uid = uid
+            credential.password = nil
             
             guard let data = credential.toDictionary() else {
                 completion(RegistrationError.invalidData)
