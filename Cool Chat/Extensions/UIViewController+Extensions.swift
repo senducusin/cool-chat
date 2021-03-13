@@ -5,7 +5,6 @@
 //  Created by Jansen Ducusin on 3/12/21.
 //
 
-import Foundation
 import UIKit
 
 extension UIViewController {
@@ -18,6 +17,12 @@ extension UIViewController {
         gradient.frame = self.view.frame
     }
     
+    public func setupTopCenterAuthView(subview:UIView, squareDimension:CGFloat = 120) {
+        self.view.addSubview(subview)
+        subview.centerX(inView: view)
+        subview.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
+        subview.setDimensions(height: squareDimension, width: squareDimension)
+    }
 }
 
 extension UIViewController {

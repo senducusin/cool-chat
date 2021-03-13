@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A693B2FD25FC338000C6B2D8 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */; };
+		A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */; };
+		A693B30D25FC483E00C6B2D8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */; };
 		A6F001D425FB5FF000CDC901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F001D325FB5FF000CDC901 /* AppDelegate.swift */; };
 		A6F001D625FB5FF000CDC901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F001D525FB5FF000CDC901 /* SceneDelegate.swift */; };
 		A6F001DD25FB5FF100CDC901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F001DC25FB5FF100CDC901 /* Assets.xcassets */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
+		A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A6F001D025FB5FF000CDC901 /* Cool Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cool Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F001D325FB5FF000CDC901 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6F001D525FB5FF000CDC901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A693B30625FC481B00C6B2D8 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		A6F001C725FB5FF000CDC901 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +90,7 @@
 		A6F001D225FB5FF000CDC901 /* Cool Chat */ = {
 			isa = PBXGroup;
 			children = (
+				A693B30625FC481B00C6B2D8 /* View Models */,
 				A6F0022625FB9E2700CDC901 /* View */,
 				A6F001FF25FB69FA00CDC901 /* Extensions */,
 				A6F001F825FB62CA00CDC901 /* Controllers */,
@@ -107,6 +122,8 @@
 				A6F0021A25FB7D2700CDC901 /* UIImageView+Extensions.swift */,
 				A6F0022F25FBA0E700CDC901 /* UIImage+Extensions.swift */,
 				A6F0021D25FB7FA400CDC901 /* UIView+Extensions.swift */,
+				A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */,
+				A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -208,8 +225,11 @@
 				A6F0021825FB7B5A00CDC901 /* UIViewController+Extensions.swift in Sources */,
 				A6F0021525FB79C600CDC901 /* RegisterController.swift in Sources */,
 				A6F0022825FB9E3A00CDC901 /* InputContainerView.swift in Sources */,
+				A693B30D25FC483E00C6B2D8 /* LoginViewModel.swift in Sources */,
+				A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */,
 				A6F0020525FB6AB200CDC901 /* UITableViewCell+Extensions.swift in Sources */,
 				A6F0020125FB6A3F00CDC901 /* UITableView+Extensions.swift in Sources */,
+				A693B2FD25FC338000C6B2D8 /* UIStackView+Extensions.swift in Sources */,
 				A6F0021125FB79BC00CDC901 /* LoginController.swift in Sources */,
 				A6F0021E25FB7FA400CDC901 /* UIView+Extensions.swift in Sources */,
 			);

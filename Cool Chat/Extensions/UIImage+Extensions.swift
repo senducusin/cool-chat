@@ -9,13 +9,23 @@ import UIKit
 
 extension UIImage {
     
-    static let LoginPasswordIcon: UIImage? = {
+    static let loginPasswordIcon: UIImage? = {
         let image = UIImage(systemName: "lock")
         return image
     }()
     
-    static let LoginEmailIcon: UIImage? = {
+    static let loginEmailIcon: UIImage? = {
         let image = UIImage(systemName: "envelope")
+        return image
+    }()
+    
+    static let registerPhotoImage: UIImage? = {
+        let image = UIImage(systemName: "person.circle")
+        return image
+    }()
+    
+    static let registerInfoIcon: UIImage? = {
+        let image = UIImage(systemName: "person")
         return image
     }()
 }
