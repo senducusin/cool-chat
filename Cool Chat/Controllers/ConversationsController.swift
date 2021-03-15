@@ -10,7 +10,7 @@ import Firebase
 
 class ConversationsController: UIViewController {
     // MARK: - Properties
-    let tableView = UITableView.createTable()
+    private let tableView = UITableView.createTable(customCellClass: ConversationTableViewCell.self)
     
     private let newMessageButton: UIButton = {
         let button = UIButton(type: .system)
@@ -21,6 +21,8 @@ class ConversationsController: UIViewController {
         return button
     }()
     
+    private var conversations = [Conversation]()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -28,6 +30,7 @@ class ConversationsController: UIViewController {
         self.authenticateUser()
         self.setupUI()
         self.setupTableView()
+        self.fetchConversations()
     }
     
     override func viewDidLayoutSubviews() {
@@ -37,11 +40,12 @@ class ConversationsController: UIViewController {
     
     // MARK: - Selectors
     @objc private func showProfileDidTap(){
-        /*
-         Temporary Codes
-         */
-        self.logoutUser()
         
+        let controller = ProfileController()
+        
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav,animated: true, completion: nil)
     }
     
     @objc private func newMessageButtonDidTap(){
@@ -67,7 +71,23 @@ class ConversationsController: UIViewController {
         }
     }
     
+    func fetchConversations(){
+        FirebaseWebService.fetchConversations { (conversations) in
+            self.conversations = conversations
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     // MARK: - Helpers
+    
+    private func showChatController(forUser user: User){
+        let controller = ChatController(user: user)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     private func presentLoginScreen(animated: Bool){
         DispatchQueue.main.async {
             let loginController = LoginController()
@@ -101,17 +121,20 @@ class ConversationsController: UIViewController {
 // MARK: - TableView Datasource and Delegate
 extension ConversationsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: UITableViewCell.conversationTVCellIdentifier, for: indexPath)
-        cell.textLabel?.text = "test"
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: UITableViewCell.conversationTVCellIdentifier, for: indexPath) as! ConversationTableViewCell
+        let conversation = conversations[indexPath.row]
+        cell.conversation = conversation
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+        let user = conversations[indexPath.row].user
+        self.showChatController(forUser: user)
     }
 }
 
@@ -122,8 +145,7 @@ extension ConversationsController: NewMessageControllerDelegate{
         print(user.fullname)
         controller.dismiss(animated: true, completion: nil)
 
-        let chatController = ChatController(user: user)
-        self.navigationController?.pushViewController(chatController, animated: true)
+        self.showChatController(forUser: user)
     }
     
     

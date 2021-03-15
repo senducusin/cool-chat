@@ -95,7 +95,7 @@ class LoginController: UIViewController{
         self.view.backgroundColor = .systemPurple
         self.navigationController?.navigationBar.isHidden = true
         
-        self.addGradientToView(with: [UIColor.systemPurple.cgColor, UIColor.systemPink.cgColor])
+        self.view.addGradientToView(with: [UIColor.systemPurple.cgColor, UIColor.systemPink.cgColor])
         
         self.setupTopCenterAuthView(subview: self.iconImage)
         

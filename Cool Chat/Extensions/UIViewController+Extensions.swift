@@ -9,15 +9,6 @@ import UIKit
 import JGProgressHUD
 
 extension UIViewController {
-    public func addGradientToView(with cgColors:[CGColor]){
-        let gradient = CAGradientLayer()
-        gradient.colors = cgColors
-        gradient.locations = [0, 1]
-        self.view.layer.addSublayer(gradient)
-        
-        gradient.frame = self.view.frame
-    }
-    
     public func setupTopCenterAuthView(subview:UIView, squareDimension:CGFloat = 120) {
         self.view.addSubview(subview)
         subview.centerX(inView: view)

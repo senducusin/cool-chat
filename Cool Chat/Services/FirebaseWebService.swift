@@ -7,11 +7,9 @@
 
 import Firebase
 
-
-
 struct FirebaseWebService {
     static func fetchUsers(completion:@escaping(Result<[User],Error>)->()){
-        Firestore.firestore().collection("users").getDocuments { snapshot, error in
+        COLLECTION_USERS.getDocuments { snapshot, error in
             
             guard error == nil else {
                 if let error = error {
@@ -43,6 +41,10 @@ struct FirebaseWebService {
         /// Add message to current user
         COLLECTION_MESSAGES.document(currentUid).collection(user.uid).addDocument(data: data) { (_) in
             COLLECTION_MESSAGES.document(user.uid).collection(currentUid).addDocument(data: data, completion: completion)
+            
+            COLLECTION_MESSAGES.document(currentUid).collection("recent-messages").document(user.uid).setData(data)
+            
+            COLLECTION_MESSAGES.document(user.uid).collection("recent-messages").document(user.uid).setData(data)
         }
     }
     
@@ -59,6 +61,41 @@ struct FirebaseWebService {
                     completion(messages)
                 }
             })
+        }
+    }
+    
+    static func fetchConversations(completion: @escaping([Conversation]) -> ()){
+        var conversations = [Conversation]()
+        
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let query = COLLECTION_MESSAGES.document(uid).collection("recent-messages").order(by: "timestamp")
+        
+        query.addSnapshotListener { (snapshot, error) in
+            snapshot?.documentChanges.forEach({ (change) in
+                let dictionary = change.document.data()
+                let message = Message(dictionary: dictionary)
+                
+                
+                self.fetchUser(with: message.toId) { (user) in
+                    let conversation = Conversation(user: user, message: message)
+                    conversations.append(conversation)
+//                    print(conversations)
+                    completion(conversations)
+                }
+                
+            })
+        }
+    }
+    
+    static func fetchUser(with uid: String, completion:@escaping(User)->()){
+        COLLECTION_USERS.document(uid).getDocument { (snapshot, error) in
+            guard let dictionary = snapshot?.data() else {
+                return
+            }
+            
+            if let user = User(dictionary) {
+                completion(user)
+            }
         }
     }
 }

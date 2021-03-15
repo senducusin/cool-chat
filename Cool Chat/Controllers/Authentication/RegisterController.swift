@@ -159,7 +159,7 @@ class RegisterController: UIViewController{
     }
     
     private func setupUI(){
-        self.addGradientToView(with: [UIColor.systemPurple.cgColor, UIColor.systemPink.cgColor])
+        self.view.addGradientToView(with: [UIColor.systemPurple.cgColor, UIColor.systemPink.cgColor])
         
         self.setupTopCenterAuthView(subview: addPhotoButton, squareDimension: 200)
         

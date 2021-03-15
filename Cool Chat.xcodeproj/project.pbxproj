@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		728AA2657662A30AF7C01692 /* Pods_Cool_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E91D29A6B08596E4844440 /* Pods_Cool_Chat.framework */; };
 		A624744825FEE54200FBF17A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624744725FEE54200FBF17A /* Constants.swift */; };
+		A624744C25FEF29A00FBF17A /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624744B25FEF29A00FBF17A /* Conversation.swift */; };
+		A624744F25FEF79900FBF17A /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624744E25FEF79900FBF17A /* ConversationTableViewCell.swift */; };
+		A624745225FEFB5400FBF17A /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624745125FEFB5400FBF17A /* ConversationViewModel.swift */; };
+		A624745525FEFEC100FBF17A /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624745425FEFEC100FBF17A /* ProfileController.swift */; };
+		A624745825FEFF8C00FBF17A /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624745725FEFF8C00FBF17A /* ProfileHeader.swift */; };
 		A635181125FC66B000A21E73 /* RegistrationCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635181025FC66B000A21E73 /* RegistrationCredential.swift */; };
 		A635181525FC690A00A21E73 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635181425FC690A00A21E73 /* Encodable+Extensions.swift */; };
 		A635181A25FC8EF500A21E73 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635181925FC8EF500A21E73 /* AuthService.swift */; };
@@ -50,6 +55,11 @@
 		13ECA0E281FF0115CFBBB50B /* Pods-Cool Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cool Chat.debug.xcconfig"; path = "Target Support Files/Pods-Cool Chat/Pods-Cool Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		2A35B09A622E97D45369E656 /* Pods-Cool Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cool Chat.release.xcconfig"; path = "Target Support Files/Pods-Cool Chat/Pods-Cool Chat.release.xcconfig"; sourceTree = "<group>"; };
 		A624744725FEE54200FBF17A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A624744B25FEF29A00FBF17A /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		A624744E25FEF79900FBF17A /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
+		A624745125FEFB5400FBF17A /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
+		A624745425FEFEC100FBF17A /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		A624745725FEFF8C00FBF17A /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		A635181025FC66B000A21E73 /* RegistrationCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCredential.swift; sourceTree = "<group>"; };
 		A635181425FC690A00A21E73 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		A635181925FC8EF500A21E73 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -126,6 +136,7 @@
 				A635181E25FCA16300A21E73 /* MessageType.swift */,
 				A635182725FCC92E00A21E73 /* User.swift */,
 				A635183A25FD09F400A21E73 /* Message.swift */,
+				A624744B25FEF29A00FBF17A /* Conversation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -144,6 +155,8 @@
 			children = (
 				A693B31225FC55A000C6B2D8 /* Authentication */,
 				A635184125FD0D5C00A21E73 /* MessageViewModel.swift */,
+				A624745125FEFB5400FBF17A /* ConversationViewModel.swift */,
+				A624745725FEFF8C00FBF17A /* ProfileHeader.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -202,6 +215,7 @@
 				A6F001F925FB62E800CDC901 /* ConversationsController.swift */,
 				A635182125FCBBE800A21E73 /* NewMessageController.swift */,
 				A635182E25FCF63C00A21E73 /* ChatController.swift */,
+				A624745425FEFEC100FBF17A /* ProfileController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -241,6 +255,7 @@
 				A635182425FCC50200A21E73 /* NewMessageTableViewCell.swift */,
 				A635183125FCFDDB00A21E73 /* CustomInputAccessoryView.swift */,
 				A635183725FD065500A21E73 /* ChatCollectionViewCell.swift */,
+				A624744E25FEF79900FBF17A /* ConversationTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -369,6 +384,7 @@
 			files = (
 				A635182B25FCCB7400A21E73 /* FirebaseWebService.swift in Sources */,
 				A6F0021B25FB7D2700CDC901 /* UIImageView+Extensions.swift in Sources */,
+				A624745525FEFEC100FBF17A /* ProfileController.swift in Sources */,
 				A635184225FD0D5C00A21E73 /* MessageViewModel.swift in Sources */,
 				A6F001D425FB5FF000CDC901 /* AppDelegate.swift in Sources */,
 				A6F0023425FBA2FA00CDC901 /* CustomTextField.swift in Sources */,
@@ -386,15 +402,19 @@
 				A6F0021825FB7B5A00CDC901 /* UIViewController+Extensions.swift in Sources */,
 				A6F0021525FB79C600CDC901 /* RegisterController.swift in Sources */,
 				A6F0022825FB9E3A00CDC901 /* InputContainerView.swift in Sources */,
+				A624745825FEFF8C00FBF17A /* ProfileHeader.swift in Sources */,
 				A635182F25FCF63C00A21E73 /* ChatController.swift in Sources */,
 				A693B30D25FC483E00C6B2D8 /* LoginViewModel.swift in Sources */,
 				A635183B25FD09F400A21E73 /* Message.swift in Sources */,
 				A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */,
 				A624744825FEE54200FBF17A /* Constants.swift in Sources */,
+				A624744F25FEF79900FBF17A /* ConversationTableViewCell.swift in Sources */,
+				A624745225FEFB5400FBF17A /* ConversationViewModel.swift in Sources */,
 				A6F0020525FB6AB200CDC901 /* UITableViewCell+Extensions.swift in Sources */,
 				A635182525FCC50200A21E73 /* NewMessageTableViewCell.swift in Sources */,
 				A6F0020125FB6A3F00CDC901 /* UITableView+Extensions.swift in Sources */,
 				A635183225FCFDDB00A21E73 /* CustomInputAccessoryView.swift in Sources */,
+				A624744C25FEF29A00FBF17A /* Conversation.swift in Sources */,
 				A693B2FD25FC338000C6B2D8 /* UIStackView+Extensions.swift in Sources */,
 				A635181525FC690A00A21E73 /* Encodable+Extensions.swift in Sources */,
 				A6F0021125FB79BC00CDC901 /* LoginController.swift in Sources */,

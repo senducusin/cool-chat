@@ -8,6 +8,20 @@
 import UIKit
 
 extension UIView {
+    
+    public func addGradientToView(with cgColors:[CGColor], selfFrame:Bool = true){
+        let gradient = CAGradientLayer()
+        gradient.colors = cgColors
+        gradient.locations = [0, 1]
+        self.layer.addSublayer(gradient)
+        
+        if selfFrame {
+            gradient.frame = self.frame
+        } else {
+            gradient.frame = self.bounds
+        }
+    }
+    
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,
                 bottom: NSLayoutYAxisAnchor? = nil,
