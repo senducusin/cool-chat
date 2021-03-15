@@ -55,7 +55,7 @@ class ChatCollectionViewCell: UICollectionViewCell {
         
         addSubview(self.bubbleContainer)
         self.bubbleContainer.layer.cornerRadius = 12
-        self.bubbleContainer.anchor(top:topAnchor)
+        self.bubbleContainer.anchor(top:topAnchor, bottom: bottomAnchor)
         self.bubbleContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
         
         /// Left Anchor

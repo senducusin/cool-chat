@@ -48,6 +48,7 @@ class ChatController: UICollectionViewController{
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                self.collectionView.scrollToItem(at: [0, self.messages.count - 1], at: .bottom, animated: false)
             }
         }
     }
@@ -60,6 +61,7 @@ class ChatController: UICollectionViewController{
         
         self.collectionView.register(ChatCollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.chatCollectionViewCell)
         self.collectionView.alwaysBounceVertical = true
+        self.collectionView.keyboardDismissMode = .onDrag
     }
 }
 
@@ -85,7 +87,16 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        
+        let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
+        let estimatedSizeCell = ChatCollectionViewCell(frame:frame)
+        estimatedSizeCell.message = messages[indexPath.row]
+        estimatedSizeCell.layoutIfNeeded()
+        
+        let targetSize = CGSize(width: view.frame.width, height: 1000)
+        let estimatedSize = estimatedSizeCell.systemLayoutSizeFitting(targetSize)
+        
+        return .init(width: view.frame.width, height: estimatedSize.height)
     }
 }
 
