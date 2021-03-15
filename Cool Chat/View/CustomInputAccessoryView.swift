@@ -13,7 +13,7 @@ protocol CustomInputAccessoryViewDelegate: class {
 
 class CustomInputAccessoryView: UIView {
     // MARK: - Properties
-    public let messageInputTextView: UITextView = {
+    private let messageInputTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.isScrollEnabled = false
@@ -81,5 +81,11 @@ class CustomInputAccessoryView: UIView {
     
     @objc func messageInputDidChange() {
         self.placeholderLabel.isHidden = !self.messageInputTextView.text.isEmpty
+    }
+    
+    // MARK: - Helpers
+    public func clearMessageText() {
+        self.messageInputTextView.text = nil
+        placeholderLabel.isHidden = false
     }
 }

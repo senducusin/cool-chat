@@ -9,7 +9,7 @@ import Foundation
 
 typealias jsonDictionary = [String:Any]
 
-struct User {
+struct User:Encodable {
     let uid: String
     let profileImageUrl: String
     let username: String

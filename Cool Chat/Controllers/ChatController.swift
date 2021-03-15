@@ -9,8 +9,6 @@ import UIKit
 
 class ChatController: UICollectionViewController{
     // MARK: - Properties
-    
-    var fromCurrentUser = false
     private let user: User
     private lazy var customInputView: CustomInputAccessoryView = {
         let inputView = CustomInputAccessoryView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
@@ -32,6 +30,7 @@ class ChatController: UICollectionViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+        self.fetchMessages()
     }
     
     override var inputAccessoryView: UIView? {
@@ -40,6 +39,17 @@ class ChatController: UICollectionViewController{
     
     override var canBecomeFirstResponder: Bool {
         return true
+    }
+    
+    // MARK: - API
+    func fetchMessages(){
+        FirebaseWebService.fetchMessages(for: user) { messages in
+            self.messages = messages
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     // MARK: - Helpers
@@ -62,6 +72,7 @@ extension ChatController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.chatCollectionViewCell, for: indexPath) as! ChatCollectionViewCell
         
         cell.message = messages[indexPath.row]
+        cell.message?.user = self.user
         
         return cell
     }
@@ -82,12 +93,16 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
 extension ChatController: CustomInputAccessoryViewDelegate {
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
         
-        inputView.messageInputTextView.text = nil
-        
-        let message = Message(text: message, isFromCurrentUser: fromCurrentUser)
-        messages.append(message)
-        self.collectionView.reloadData()
-        fromCurrentUser.toggle()
+        FirebaseWebService.uploadMessage(message, to: user) { (error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.showQuickMessage(withText: error.localizedDescription, messageType: .error)
+                }
+                return
+            }
+            
+            inputView.clearMessageText()
+            
+        }
     }
-    
 }
