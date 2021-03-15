@@ -71,6 +71,8 @@ class NewMessageTableViewCell: UITableViewCell {
         stack.centerY(inView: self.profileImageView, leftAnchor:  self.profileImageView.rightAnchor, paddingLeft: 12)
     }
     
+   
+    
     public func configure(){
         
         if let user = user {
