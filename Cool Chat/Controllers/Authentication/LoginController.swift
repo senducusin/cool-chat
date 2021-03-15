@@ -8,8 +8,13 @@
 import UIKit
 import Firebase
 
+protocol AuthenticationDelegate: class {
+    func authenticationComplete()
+}
+
 class LoginController: UIViewController{
     // MARK: - Properties
+    weak var delegate: AuthenticationDelegate?
     let iconImage = UIImageView.iconImage
     let loginButton = UIButton.createAuthButton(title: "Log in", vc: self, selector: #selector(loginDidTap))
     let dontHaveAnAccountButton = UIButton.createAuthAttributedButton(regularString: "Don't have an account? ", highlightedString: "Sign Up", target:self, selector: #selector(dontHaveAnAccountButtonDidTap) )
@@ -61,12 +66,13 @@ class LoginController: UIViewController{
                 return
             }
             self.showLoader(false)
-            self.dismiss(animated: true, completion: nil)
+            self.delegate?.authenticationComplete()
         }
     }
     
     @objc func dontHaveAnAccountButtonDidTap(){
         let registrationController = RegisterController()
+        registrationController.delegate = delegate
         navigationController?.pushViewController(registrationController, animated: true)
     }
     

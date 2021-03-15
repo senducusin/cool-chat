@@ -74,7 +74,7 @@ class ConversationTableViewCell: UITableViewCell {
         let viewModel = ConversationViewModel(conversation:conversation)
         
         self.usernameLabel.text = conversation.user.username
-        self.messageTextLabel.text = conversation.message.text
+        self.messageTextLabel.text = conversation.message.content
         
         self.timestampLabel.text = viewModel.timestamp
         self.profileImageView.sd_setImage(with: viewModel.profileImageUrl)

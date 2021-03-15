@@ -18,13 +18,15 @@ struct FirebaseWebService {
                 return
             }
             
-            var users = [User]()
-            snapshot?.documents.forEach({ document in
-                if let user = User(document.data()){
-                    users.append(user)
-                }
-            })
+            guard var users:[User] = snapshot?.documents.map({ User($0.data())! }) else { return }
+            
+            if let i = users.firstIndex(where: { $0.uid == Auth.auth().currentUser?.uid }){
+                print(users[i].fullname)
+                users.remove(at: i)
+            }
+            
             completion(.success(users))
+            
         }
     }
     
@@ -44,7 +46,7 @@ struct FirebaseWebService {
             
             COLLECTION_MESSAGES.document(currentUid).collection("recent-messages").document(user.uid).setData(data)
             
-            COLLECTION_MESSAGES.document(user.uid).collection("recent-messages").document(user.uid).setData(data)
+            COLLECTION_MESSAGES.document(user.uid).collection("recent-messages").document(currentUid).setData(data)
         }
     }
     
@@ -71,15 +73,21 @@ struct FirebaseWebService {
         let query = COLLECTION_MESSAGES.document(uid).collection("recent-messages").order(by: "timestamp")
         
         query.addSnapshotListener { (snapshot, error) in
-            snapshot?.documentChanges.forEach({ (change) in
+            
+            snapshot?.documentChanges.forEach({ change in
                 let dictionary = change.document.data()
                 let message = Message(dictionary: dictionary)
                 
+//                print(message.text)
                 
-                self.fetchUser(with: message.toId) { (user) in
+                self.fetchUser(with: message.chatPartnerId) { user in
                     let conversation = Conversation(user: user, message: message)
+                  
                     conversations.append(conversation)
-//                    print(conversations)
+                    
+                    // check for uid duplicates
+//                    print("??? \(conversation)")
+//                    print("!!! \(conversations)")
                     completion(conversations)
                 }
                 

@@ -10,6 +10,7 @@ import Firebase
 
 class RegisterController: UIViewController{
     // MARK: - Properties
+    weak var delegate: AuthenticationDelegate?
     private let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage.registerPhotoImage, for: .normal)
@@ -95,7 +96,8 @@ class RegisterController: UIViewController{
                 return
             }
             self.showLoader(false)
-            self.dismiss(animated: true, completion: nil)
+            self.delegate?.authenticationComplete()
+//            self.dismiss(animated: true, completion: nil)
         }
     }
     

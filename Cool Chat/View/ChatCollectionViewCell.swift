@@ -82,7 +82,7 @@ class ChatCollectionViewCell: UICollectionViewCell {
         
         self.bubbleContainer.backgroundColor = viewModel.messageBackgroundColor
         self.textView.textColor = viewModel.messageTextColor
-        self.textView.text = message.text
+        self.textView.text = message.content
         
         bubbleLeftAnchor.isActive = viewModel.leftAnchorActive
         bubbleRightAnchor.isActive = viewModel.rightAnchorActive

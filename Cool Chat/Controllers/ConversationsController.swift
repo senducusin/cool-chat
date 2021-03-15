@@ -22,6 +22,7 @@ class ConversationsController: UIViewController {
     }()
     
     private var conversations = [Conversation]()
+    private var conversationsDictionary = [String:Conversation]()
     
     // MARK: - Lifecycle
     
@@ -73,8 +74,15 @@ class ConversationsController: UIViewController {
     }
     
     func fetchConversations(){
-        FirebaseWebService.fetchConversations { (conversations) in
-            self.conversations = conversations
+        self.conversationsDictionary.removeAll()
+        FirebaseWebService.fetchConversations { conversations in
+            self.conversations.removeAll()
+            conversations.forEach { conversation in
+                let message = conversation.message
+                self.conversationsDictionary[message.chatPartnerId] = conversation
+                
+            }
+            self.conversations = Array(self.conversationsDictionary.values)
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -92,6 +100,7 @@ class ConversationsController: UIViewController {
     private func presentLoginScreen(animated: Bool){
         DispatchQueue.main.async {
             let loginController = LoginController()
+            loginController.delegate = self
             let nav = UINavigationController(rootViewController: loginController)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: animated, completion: nil)
@@ -153,6 +162,12 @@ extension ConversationsController: ProfileControllerDelegate {
     func handleLogoutCurrentUser() {
         self.logoutUser()
     }
-    
-    
+}
+
+extension ConversationsController: AuthenticationDelegate {
+    func authenticationComplete() {
+        self.dismiss(animated: true, completion: nil)
+        self.setupUI()
+        self.fetchConversations()
+    }
 }
