@@ -28,6 +28,8 @@
 		A635183825FD065500A21E73 /* ChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635183725FD065500A21E73 /* ChatCollectionViewCell.swift */; };
 		A635183B25FD09F400A21E73 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635183A25FD09F400A21E73 /* Message.swift */; };
 		A635184225FD0D5C00A21E73 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635184125FD0D5C00A21E73 /* MessageViewModel.swift */; };
+		A66E155125FF0BF7004017D8 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E155025FF0BF7004017D8 /* ProfileViewModel.swift */; };
+		A66E155425FF0CE1004017D8 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E155325FF0CE1004017D8 /* ProfileTableViewCell.swift */; };
 		A693B2FD25FC338000C6B2D8 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */; };
 		A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */; };
 		A693B30D25FC483E00C6B2D8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */; };
@@ -74,6 +76,8 @@
 		A635183725FD065500A21E73 /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		A635183A25FD09F400A21E73 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A635184125FD0D5C00A21E73 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		A66E155025FF0BF7004017D8 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		A66E155325FF0CE1004017D8 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -156,7 +160,7 @@
 				A693B31225FC55A000C6B2D8 /* Authentication */,
 				A635184125FD0D5C00A21E73 /* MessageViewModel.swift */,
 				A624745125FEFB5400FBF17A /* ConversationViewModel.swift */,
-				A624745725FEFF8C00FBF17A /* ProfileHeader.swift */,
+				A66E155025FF0BF7004017D8 /* ProfileViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -256,6 +260,8 @@
 				A635183125FCFDDB00A21E73 /* CustomInputAccessoryView.swift */,
 				A635183725FD065500A21E73 /* ChatCollectionViewCell.swift */,
 				A624744E25FEF79900FBF17A /* ConversationTableViewCell.swift */,
+				A624745725FEFF8C00FBF17A /* ProfileHeader.swift */,
+				A66E155325FF0CE1004017D8 /* ProfileTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -415,9 +421,11 @@
 				A6F0020125FB6A3F00CDC901 /* UITableView+Extensions.swift in Sources */,
 				A635183225FCFDDB00A21E73 /* CustomInputAccessoryView.swift in Sources */,
 				A624744C25FEF29A00FBF17A /* Conversation.swift in Sources */,
+				A66E155425FF0CE1004017D8 /* ProfileTableViewCell.swift in Sources */,
 				A693B2FD25FC338000C6B2D8 /* UIStackView+Extensions.swift in Sources */,
 				A635181525FC690A00A21E73 /* Encodable+Extensions.swift in Sources */,
 				A6F0021125FB79BC00CDC901 /* LoginController.swift in Sources */,
+				A66E155125FF0BF7004017D8 /* ProfileViewModel.swift in Sources */,
 				A635183825FD065500A21E73 /* ChatCollectionViewCell.swift in Sources */,
 				A6F0021E25FB7FA400CDC901 /* UIView+Extensions.swift in Sources */,
 			);

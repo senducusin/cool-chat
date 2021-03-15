@@ -47,22 +47,33 @@ class ProfileController: UITableViewController {
     private func setupUI(){
         self.tableView.backgroundColor = .white
         self.tableView.tableHeaderView = self.headerView
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.profileTVCellIdentifier)
+        self.tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: UITableViewCell.profileTVCellIdentifier)
         self.tableView.tableFooterView = UIView()
         self.tableView.contentInsetAdjustmentBehavior = .never
+        self.tableView.rowHeight = 64
+        self.tableView.backgroundColor = .systemGroupedBackground
     }
 }
 
 extension ProfileController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return ProfileViewModel.allCases.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.profileTVCellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.profileTVCellIdentifier, for: indexPath) as! ProfileTableViewCell
         
-        cell.textLabel?.text = "test"
+        let viewModel = ProfileViewModel(rawValue: indexPath.row)
+        cell.viewModel = viewModel
+        cell.accessoryType = .disclosureIndicator
+        
         return cell
+    }
+}
+
+extension ProfileController {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
     }
 }
 

@@ -41,7 +41,7 @@ class ConversationsController: UIViewController {
     // MARK: - Selectors
     @objc private func showProfileDidTap(){
         
-        let controller = ProfileController()
+        let controller = ProfileController(style: .insetGrouped)
         
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
