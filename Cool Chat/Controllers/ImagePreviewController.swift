@@ -55,7 +55,7 @@ extension ImagePreviewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        if scrollView.zoomScale > 1 { 
+        if scrollView.zoomScale > 1 {
             if let image = imagePreview.image {
                 let ratioWidth = imagePreview.frame.width / image.size.width
                 let ratioHeight = imagePreview.frame.height / image.size.height

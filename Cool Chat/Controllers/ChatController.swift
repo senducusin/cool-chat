@@ -74,7 +74,6 @@ extension ChatController {
         cell.message = messages[indexPath.row]
         cell.message?.user = self.user
         
-        
         return cell
     }
 }
@@ -91,7 +90,6 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
         let estimatedSizeCell = ChatCollectionViewCell(frame:frame)
         
         let message = messages[indexPath.row]
-        
         
         estimatedSizeCell.message = message
         estimatedSizeCell.layoutIfNeeded()
@@ -119,6 +117,16 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
 
 
 extension ChatController: CustomInputAccessoryViewDelegate {
+    func inputViewWantsToOpenCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .camera
+            imagePickerController.delegate = self
+            
+            self.present(imagePickerController, animated: true, completion: nil)
+        }
+    }
+    
     func inputViewWantsToOpenPhotos() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self

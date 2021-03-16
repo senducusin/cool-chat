@@ -70,9 +70,7 @@ class RegisterController: UIViewController{
     
     // MARK: - Selectors
     @objc func addPhotoButtonDidTap(){
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
+        self.showOptionsForUsingProfilePhoto()
     }
     
     @objc func signUpDidTap(){
@@ -140,6 +138,36 @@ class RegisterController: UIViewController{
     }
     
     // MARK: - Helpers
+    
+    private func showOptionsForUsingProfilePhoto(){
+        let alert = UIAlertController(title: nil, message:"How do you want to select a profile photo?",preferredStyle: .actionSheet)
+        
+        let camera = UIAlertAction(title: "Use Camera", style: .default) { [weak self] _ in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.sourceType = .camera
+                imagePickerController.cameraDevice = .front
+                imagePickerController.allowsEditing = true
+                imagePickerController.delegate = self
+                
+                self?.present(imagePickerController, animated: true, completion: nil)
+            }
+        }
+        
+        let photos = UIAlertAction(title: "Open Photos", style: .default) { [weak self] _ in
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.allowsEditing = true
+            imagePickerController.delegate = self
+            self?.present(imagePickerController, animated: true, completion: nil)
+        }
+        
+        alert.addAction(camera)
+        alert.addAction(photos)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
     private func setupNotificationObservers(for textFields:[UITextField]){
         for textField in textFields {
             textField.addTarget(self, action: #selector(self.textDidChange(sender:)), for: .editingChanged)

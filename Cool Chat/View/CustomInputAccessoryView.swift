@@ -10,6 +10,7 @@ import UIKit
 protocol CustomInputAccessoryViewDelegate: class {
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message:String)
     func inputViewWantsToOpenPhotos()
+    func inputViewWantsToOpenCamera()
 }
 
 class CustomInputAccessoryView: UIView {
@@ -63,6 +64,7 @@ class CustomInputAccessoryView: UIView {
         button.setImage(UIImage.cameraImage, for: .normal)
         button.tintColor = .systemPurple
         button.isHidden = true
+        button.addTarget(self, action: #selector(cameraButtonDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -120,6 +122,10 @@ class CustomInputAccessoryView: UIView {
     
     @objc func photoButtonDidTap(){
         self.delegate?.inputViewWantsToOpenPhotos()
+    }
+    
+    @objc func cameraButtonDidTap(){
+        self.delegate?.inputViewWantsToOpenCamera()
     }
     
     // MARK: - Helpers
