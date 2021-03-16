@@ -13,6 +13,9 @@ protocol CustomInputAccessoryViewDelegate: class {
 
 class CustomInputAccessoryView: UIView {
     // MARK: - Properties
+    var optionsViewSetToHide: NSLayoutConstraint!
+    var optionsViewSetToShow: NSLayoutConstraint!
+    
     private let messageInputTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 16)
@@ -37,6 +40,20 @@ class CustomInputAccessoryView: UIView {
         return label
     }()
     
+    private lazy var chevronRight: UIButton = {
+        let button = UIButton(type:  .system)
+        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        button.tintColor = .systemPurple
+        button.addTarget(self, action: #selector(chevronButtonDidTap), for: .touchUpInside)
+        return button
+    }()
+    
+    private var optionsView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+//        view.backgroundColor = .green
+        return view
+    }()
+    
     weak var delegate: CustomInputAccessoryViewDelegate?
     
     // MARK: - Lifecycle
@@ -51,16 +68,11 @@ class CustomInputAccessoryView: UIView {
         self.layer.shadowOffset = .init(width: 0, height: -8)
         self.layer.shadowColor = UIColor.lightGray.cgColor
         
-        self.addSubview(self.sendButton)
-        self.sendButton.anchor(top: topAnchor, right: rightAnchor, paddingTop: 4, paddingRight: 8)
-        self.sendButton.setDimensions(height: 50, width: 50)
+        self.setupSendButton()
+        self.setupMessageInputTextView()
+        self.setupPlaceholderLabel()
         
-        self.addSubview(self.messageInputTextView)
-        self.messageInputTextView.anchor(top: topAnchor, left: leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: sendButton.leftAnchor, paddingTop: 12, paddingLeft: 4, paddingBottom: 4, paddingRight: 8)
-        
-        self.addSubview(placeholderLabel)
-        self.placeholderLabel.anchor(left: messageInputTextView.leftAnchor, paddingLeft:  4)
-        self.placeholderLabel.centerY(inView: messageInputTextView)
+        self.setupOptionsView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(messageInputDidChange), name: UITextView.textDidChangeNotification, object: nil)
     }
@@ -83,9 +95,67 @@ class CustomInputAccessoryView: UIView {
         self.placeholderLabel.isHidden = !self.messageInputTextView.text.isEmpty
     }
     
+    @objc func chevronButtonDidTap(){
+        
+        if self.optionsViewSetToShow.isActive {
+            self.setOptionsViewMode(show: false)
+        }else{
+            self.setOptionsViewMode(show: true)
+        }
+        
+        UIView.animate(withDuration: 0.1) {
+            self.optionsView.layoutIfNeeded()
+       }
+    }
+    
     // MARK: - Helpers
     public func clearMessageText() {
         self.messageInputTextView.text = nil
         placeholderLabel.isHidden = false
     }
+    
+    private func setupSendButton(){
+        self.addSubview(self.sendButton)
+        self.sendButton.anchor(bottom: safeAreaLayoutGuide.bottomAnchor, right: rightAnchor, paddingTop: 4, paddingRight: 8)
+        self.sendButton.setDimensions(height: 50, width: 50)
+    }
+    
+    private func setupMessageInputTextView(){
+        self.addSubview(self.messageInputTextView)
+        self.messageInputTextView.anchor(top: topAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: sendButton.leftAnchor, paddingTop: 12, paddingBottom: 4, paddingRight: 8)
+    }
+    
+    private func setupPlaceholderLabel(){
+        self.addSubview(self.placeholderLabel)
+        self.placeholderLabel.anchor(left: messageInputTextView.leftAnchor, paddingLeft:  4)
+        self.placeholderLabel.centerY(inView: messageInputTextView)
+    }
+    
+    private func setupOptionsView(){
+        self.addSubview(self.optionsView)
+        
+        self.optionsView.anchor(left: leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: self.messageInputTextView.leftAnchor, paddingTop: 12, paddingLeft: 4, paddingBottom: 10)
+        self.optionsView.setHeight(height: 25)
+    
+        self.setupOptionsViewMode()
+        self.setupOptionsInOptionView()
+    }
+    
+    private func setupOptionsViewMode(){
+        optionsViewSetToHide = self.optionsView.widthAnchor.constraint(equalToConstant: 25)
+        optionsViewSetToShow = self.optionsView.widthAnchor.constraint(equalToConstant: 100)
+        optionsViewSetToHide?.isActive = true
+    }
+    
+    private func setupOptionsInOptionView(){
+        self.optionsView.addSubview(self.chevronRight)
+        self.chevronRight.anchor(top:self.optionsView.topAnchor, right: self.optionsView.rightAnchor)
+        self.chevronRight.setDimensions(height: 24, width: 24)
+    }
+    
+    private func setOptionsViewMode(show enable:Bool) {
+        self.optionsViewSetToHide?.isActive = !enable
+        self.optionsViewSetToShow?.isActive = enable
+    }
+    
 }

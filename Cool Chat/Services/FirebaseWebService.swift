@@ -37,7 +37,8 @@ struct FirebaseWebService {
             "text": message,
             "fromId": currentUid,
             "toId":user.uid,
-            "timestamp": Timestamp(date: Date())
+            "timestamp": Timestamp(date: Date()),
+            
         ] as [String : Any]
         
         /// Add message to current user
