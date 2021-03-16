@@ -33,6 +33,8 @@ class ImagePreviewController: UIViewController {
     private func setupUI(){
         self.view.backgroundColor = .white
         
+        self.scrollView.backgroundColor = .black
+        
         self.scrollView.minimumZoomScale = 1
         self.scrollView.maximumZoomScale = 10
         self.scrollView.delegate = self

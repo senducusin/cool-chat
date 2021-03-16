@@ -61,6 +61,7 @@ class RegisterController: UIViewController{
     
     private var registerViewModel = RegisterViewModel()
     private var profileImage: UIImage?
+    private var stackView: UIStackView!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -193,7 +194,12 @@ class RegisterController: UIViewController{
         
         self.setupTopCenterAuthView(subview: addPhotoButton, squareDimension: 200)
         
-        let _ = UIStackView.setupStackView(with: self, subviews: [self.emailView,self.fullNameView, self.usernameView, self.passwordView, self.signUpButton], topAnchor: self.addPhotoButton.bottomAnchor)
+        self.stackView = UIStackView.setupStackView(with: self, subviews: [self.emailView,self.fullNameView, self.usernameView, self.passwordView, self.signUpButton], topAnchor: self.addPhotoButton.bottomAnchor)
+        
+        self.emailTextField.delegate = self
+        self.fullNameTextField.delegate = self
+        self.usernameTextField.delegate = self
+        self.passwordTextField.delegate = self
         
         self.view.addSubview(self.alreadyHaveAnAccountButton)
         
@@ -223,4 +229,28 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
         dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension RegisterController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.passwordTextField {
+            self.signUpDidTap()
+        }else{
+            self.moveToNextTextField(textField)
+        }
+        
+        return true
+    }
+    
+    private func moveToNextTextField(_ textField: UITextField){
+        let fields = self.stackView.getAllTextFields()
+        let fieldIndex = fields.firstIndex(of: textField)
+        
+        if let fieldIndex = fieldIndex {
+            if fieldIndex < fields.count - 1 {
+                fields[fieldIndex + 1].becomeFirstResponder()
+            }
+        }
+        
+    }
 }

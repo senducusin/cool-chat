@@ -113,6 +113,22 @@ class LoginController: UIViewController{
         
         self.emailTextField.addTarget(self, action: #selector(textDidChange(sender:)), for: .editingChanged)
         self.passwordTextField.addTarget(self, action: #selector(textDidChange(sender:)), for: .editingChanged)
+        
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+    }
+}
+
+extension LoginController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == self.emailTextField {
+            self.passwordTextField.becomeFirstResponder()
+        } else {
+            self.loginDidTap()
+        }
+        
+        return true
     }
 }
 

@@ -91,4 +91,15 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalToConstant: width).isActive = true
     }
+    
+    func getAllTextFields() -> [UITextField]{
+        var textfields = [UITextField]()
+        
+        for subview in self.subviews {
+            if let textfield = subview as? UITextField {
+                textfields.append(textfield)
+            }
+        }
+        return textfields
+    }
 }
