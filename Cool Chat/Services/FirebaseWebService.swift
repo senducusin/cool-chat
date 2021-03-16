@@ -30,14 +30,15 @@ struct FirebaseWebService {
         }
     }
     
-    static func uploadMessage(_ message: String, to user: User, completion:((Error?) -> ())?){
+    static func uploadMessage(_ message: String, to user: User, withTypeOf messageType: MessageType,  completion:((Error?) -> ())?){
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
         
         let data = [
-            "text": message,
+            "content": message,
             "fromId": currentUid,
             "toId":user.uid,
             "timestamp": Timestamp(date: Date()),
+            "messageType": messageType.rawValue,
             
         ] as [String : Any]
         
@@ -79,16 +80,10 @@ struct FirebaseWebService {
                 let dictionary = change.document.data()
                 let message = Message(dictionary: dictionary)
                 
-//                print(message.text)
-                
                 self.fetchUser(with: message.chatPartnerId) { user in
                     let conversation = Conversation(user: user, message: message)
                   
                     conversations.append(conversation)
-                    
-                    // check for uid duplicates
-//                    print("??? \(conversation)")
-//                    print("!!! \(conversations)")
                     completion(conversations)
                 }
                 
@@ -106,5 +101,39 @@ struct FirebaseWebService {
                 completion(user)
             }
         }
+    }
+    
+    static func uploadImageAsMessage(withImage imageMessage:UIImage, to user:User, withTypeOf type:MessageType, completion:@escaping(Error?)->()){
+        guard let imageData = imageMessage.jpegData(compressionQuality: 0.3) else {
+            return
+        }
+        
+        let filename = NSUUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/imageMessages/\(filename)")
+        
+        ref.putData(imageData, metadata: nil) { meta, error in
+            guard error == nil else {
+                if let error = error {
+                    completion(error)
+                }
+                return
+            }
+            
+            ref.downloadURL { url, error in
+                guard let imageUrl = url?.absoluteString,
+                      error == nil else {
+                    if let error = error {
+                        completion(error)
+                    }else {
+                        // another error
+                    }
+                    return
+                }
+                
+                //success
+                uploadMessage(imageUrl, to: user, withTypeOf: .image, completion: completion)
+            }
+        }
+
     }
 }

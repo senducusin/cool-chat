@@ -33,4 +33,19 @@ extension UIImage {
         let image = UIImage(systemName: "plus")
         return image
     }()
+    
+    static let chevronIcon: UIImage? = {
+        let image = UIImage(systemName: "chevron.right")
+        return image
+    }()
+    
+    static let photoImage: UIImage? = {
+        let image = UIImage(systemName: "photo")
+        return image
+    }()
+    
+    static let cameraImage: UIImage? = {
+        let image = UIImage(systemName: "camera")
+        return image
+    }()
 }

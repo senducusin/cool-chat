@@ -9,6 +9,7 @@ import UIKit
 
 protocol CustomInputAccessoryViewDelegate: class {
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message:String)
+    func inputViewWantsToOpenPhotos()
 }
 
 class CustomInputAccessoryView: UIView {
@@ -40,17 +41,33 @@ class CustomInputAccessoryView: UIView {
         return label
     }()
     
-    private lazy var chevronRight: UIButton = {
+    private lazy var showOptionsViewButton: UIButton = {
         let button = UIButton(type:  .system)
-        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        button.setImage(UIImage.chevronIcon, for: .normal)
         button.tintColor = .systemPurple
-        button.addTarget(self, action: #selector(chevronButtonDidTap), for: .touchUpInside)
+        button.addTarget(self, action: #selector(showOptionsViewDidTap), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var photoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage.photoImage, for: .normal)
+        button.tintColor = .systemPurple
+        button.isHidden = true
+        button.addTarget(self, action: #selector(photoButtonDidTap), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var cameraButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage.cameraImage, for: .normal)
+        button.tintColor = .systemPurple
+        button.isHidden = true
         return button
     }()
     
     private var optionsView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-//        view.backgroundColor = .green
         return view
     }()
     
@@ -87,7 +104,9 @@ class CustomInputAccessoryView: UIView {
     
     // MARK: - Selectors
     @objc func sendButtonDidTap(){
-        guard let message = self.messageInputTextView.text else {return}
+        guard !self.messageInputTextView.text.isEmpty,
+              let message = self.messageInputTextView.text
+               else {return}
         self.delegate?.inputView(self, wantsToSend: message)
     }
     
@@ -95,23 +114,26 @@ class CustomInputAccessoryView: UIView {
         self.placeholderLabel.isHidden = !self.messageInputTextView.text.isEmpty
     }
     
-    @objc func chevronButtonDidTap(){
-        
-        if self.optionsViewSetToShow.isActive {
-            self.setOptionsViewMode(show: false)
-        }else{
-            self.setOptionsViewMode(show: true)
-        }
-        
-        UIView.animate(withDuration: 0.1) {
-            self.optionsView.layoutIfNeeded()
-       }
+    @objc func showOptionsViewDidTap(){
+        self.animateOptionsView(show: true)
+    }
+    
+    @objc func photoButtonDidTap(){
+        self.delegate?.inputViewWantsToOpenPhotos()
     }
     
     // MARK: - Helpers
     public func clearMessageText() {
         self.messageInputTextView.text = nil
         placeholderLabel.isHidden = false
+    }
+    
+    private func animateOptionsView(show: Bool){
+        self.setOptionsViewMode(show: show)
+      
+        UIView.animate(withDuration: 0.1) {
+            self.optionsView.layoutIfNeeded()
+       }
     }
     
     private func setupSendButton(){
@@ -123,6 +145,7 @@ class CustomInputAccessoryView: UIView {
     private func setupMessageInputTextView(){
         self.addSubview(self.messageInputTextView)
         self.messageInputTextView.anchor(top: topAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: sendButton.leftAnchor, paddingTop: 12, paddingBottom: 4, paddingRight: 8)
+        self.messageInputTextView.delegate = self
     }
     
     private func setupPlaceholderLabel(){
@@ -143,19 +166,52 @@ class CustomInputAccessoryView: UIView {
     
     private func setupOptionsViewMode(){
         optionsViewSetToHide = self.optionsView.widthAnchor.constraint(equalToConstant: 25)
-        optionsViewSetToShow = self.optionsView.widthAnchor.constraint(equalToConstant: 100)
+        optionsViewSetToShow = self.optionsView.widthAnchor.constraint(equalToConstant: 80)
         optionsViewSetToHide?.isActive = true
     }
     
     private func setupOptionsInOptionView(){
-        self.optionsView.addSubview(self.chevronRight)
-        self.chevronRight.anchor(top:self.optionsView.topAnchor, right: self.optionsView.rightAnchor)
-        self.chevronRight.setDimensions(height: 24, width: 24)
+        self.setupShowViewButton()
+        
+        self.setupPhotoButton()
+        self.setupCameraButton()
+    }
+    
+    private func setupShowViewButton() {
+        self.optionsView.addSubview(self.showOptionsViewButton)
+        self.showOptionsViewButton.anchor(top:self.optionsView.topAnchor, right: self.optionsView.rightAnchor)
+        self.showOptionsViewButton.setDimensions(height: 24, width: 24)
+    }
+    
+    private func setupPhotoButton() {
+        self.optionsView.addSubview(self.photoButton)
+        self.photoButton.anchor(top:self.optionsView.topAnchor, right: self.optionsView.rightAnchor, paddingRight: 4)
+        self.photoButton.setDimensions(height: 24, width: 28)
+    }
+    
+    private func setupCameraButton() {
+        self.optionsView.addSubview(self.cameraButton)
+        self.cameraButton.anchor(top:self.optionsView.topAnchor, right: self.photoButton.leftAnchor, paddingRight: 10)
+        self.cameraButton.setDimensions(height: 24, width: 28)
     }
     
     private func setOptionsViewMode(show enable:Bool) {
-        self.optionsViewSetToHide?.isActive = !enable
         self.optionsViewSetToShow?.isActive = enable
+        self.optionsViewSetToHide?.isActive = !enable
+        
+        
+        self.displayOptions(show: enable)
     }
     
+    private func displayOptions(show: Bool){
+        self.cameraButton.isHidden = !show
+        self.photoButton.isHidden = !show
+        self.showOptionsViewButton.isHidden = show
+    }
+}
+
+extension CustomInputAccessoryView: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        self.animateOptionsView(show: false)
+    }
 }

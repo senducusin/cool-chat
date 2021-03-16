@@ -7,13 +7,12 @@
 
 import UIKit
 
+
 class ChatCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
-    
     var message :Message? {
         didSet {configure()}
     }
-    
     var bubbleLeftAnchor: NSLayoutConstraint!
     var bubbleRightAnchor: NSLayoutConstraint!
     
@@ -32,8 +31,18 @@ class ChatCollectionViewCell: UICollectionViewCell {
         textView.isScrollEnabled = false
         textView.isEditable = false
         textView.textColor = .white
+        textView.isHidden = true
         
         return textView
+    }()
+    
+    private lazy var messageImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.isHidden = true
+        imageView.setDimensions(height: 155, width: 220)
+        return imageView
     }()
     
     private let bubbleContainer: UIView = {
@@ -58,6 +67,7 @@ class ChatCollectionViewCell: UICollectionViewCell {
         self.bubbleContainer.anchor(top:topAnchor, bottom: bottomAnchor)
         self.bubbleContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
         
+        
         /// Left Anchor
         self.bubbleLeftAnchor = self.bubbleContainer.leftAnchor.constraint(equalTo: self.profileImageView.rightAnchor, constant: 12)
         self.bubbleLeftAnchor.isActive = false
@@ -67,8 +77,32 @@ class ChatCollectionViewCell: UICollectionViewCell {
         self.bubbleRightAnchor.isActive = false
         
         
-        self.bubbleContainer.addSubview(textView)
-        self.textView.anchor(top:self.bubbleContainer.topAnchor, left:bubbleContainer.leftAnchor, bottom: bubbleContainer.bottomAnchor, right: bubbleContainer.rightAnchor, paddingTop: 4, paddingLeft: 12, paddingBottom: 4, paddingRight: 12)
+        self.bubbleContainer.addSubview(self.textView)
+        self.textView.anchor(
+            top:self.bubbleContainer.topAnchor,
+            left:self.bubbleContainer.leftAnchor,
+            bottom: self.bubbleContainer.bottomAnchor,
+            right: self.bubbleContainer.rightAnchor,
+            paddingTop: 4,
+            paddingLeft: 12,
+            paddingBottom: 4,
+            paddingRight: 12
+        )
+        
+        self.bubbleContainer.addSubview(self.messageImageView)
+        
+        self.messageImageView.anchor(
+            top:self.bubbleContainer.topAnchor,
+            left: self.bubbleContainer.leftAnchor,
+            bottom: self.bubbleContainer.bottomAnchor,
+            right:self.bubbleContainer.rightAnchor,
+            paddingTop: 10,
+            paddingLeft: 10,
+            paddingBottom: 10,
+            paddingRight: 10
+        )
+        
+
     }
     
     required init?(coder: NSCoder) {
@@ -82,13 +116,45 @@ class ChatCollectionViewCell: UICollectionViewCell {
         
         self.bubbleContainer.backgroundColor = viewModel.messageBackgroundColor
         self.textView.textColor = viewModel.messageTextColor
-        self.textView.text = message.content
+        
+        switch message.messageType {
+        case .text:
+            
+            self.textView.isHidden = false
+            self.messageImageView.removeFromSuperview()
+            self.textView.text = message.content
+        case .image:
+            if let url = URL(string: message.content) {
+                self.setupMessageImageView(url)
+            }
+            
+        }
         
         bubbleLeftAnchor.isActive = viewModel.leftAnchorActive
         bubbleRightAnchor.isActive = viewModel.rightAnchorActive
         
         profileImageView.isHidden = viewModel.shouldHideProfileImage
         profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+    }
+    
+    private func setupMessageImageView(_ imageUrl:URL){
+        
+        self.messageImageView.setDimensions(height: 155, width: 220)
+        self.bubbleContainer.addSubview(self.messageImageView)
+        self.messageImageView.anchor(
+            top:self.bubbleContainer.topAnchor,
+            left: self.bubbleContainer.leftAnchor,
+            bottom: self.bubbleContainer.bottomAnchor,
+            right:self.bubbleContainer.rightAnchor,
+            paddingTop: 10,
+            paddingLeft: 10,
+            paddingBottom: 10,
+            paddingRight: 10
+        )
+        
+        self.textView.isHidden = true
+        self.messageImageView.isHidden = false
+        self.messageImageView.sd_setImage(with: imageUrl)
     }
 }
 

@@ -32,7 +32,6 @@ class ChatController: UICollectionViewController{
         self.setupUI()
         self.fetchMessages()
     }
-    
     override var inputAccessoryView: UIView? {
         get {return customInputView}
     }
@@ -56,7 +55,6 @@ class ChatController: UICollectionViewController{
     // MARK: - Helpers
     private func setupUI(){
         self.collectionView.backgroundColor = .white
-        self.navigationController?.navigationBar.prefersLargeTitles = false
         self.title = user.username
         
         self.collectionView.register(ChatCollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.chatCollectionViewCell)
@@ -76,6 +74,7 @@ extension ChatController {
         cell.message = messages[indexPath.row]
         cell.message?.user = self.user
         
+        
         return cell
     }
 }
@@ -90,7 +89,11 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
         
         let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
         let estimatedSizeCell = ChatCollectionViewCell(frame:frame)
-        estimatedSizeCell.message = messages[indexPath.row]
+        
+        let message = messages[indexPath.row]
+        
+        
+        estimatedSizeCell.message = message
         estimatedSizeCell.layoutIfNeeded()
         
         let targetSize = CGSize(width: view.frame.width, height: 1000)
@@ -102,9 +105,15 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
 
 
 extension ChatController: CustomInputAccessoryViewDelegate {
+    func inputViewWantsToOpenPhotos() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
         
-        FirebaseWebService.uploadMessage(message, to: user) { (error) in
+        FirebaseWebService.uploadMessage(message, to: user, withTypeOf: .text) { (error) in
             if let error = error {
                 DispatchQueue.main.async {
                     self.showQuickMessage(withText: error.localizedDescription, messageType: .error)
@@ -116,4 +125,29 @@ extension ChatController: CustomInputAccessoryViewDelegate {
             
         }
     }
+}
+
+// MARK: - UIImagePickerController Delegate
+extension ChatController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[.originalImage] as? UIImage {
+        
+            FirebaseWebService.uploadImageAsMessage(withImage: image, to: user, withTypeOf: .image) { error in
+                guard error == nil else {
+                    DispatchQueue.main.async {
+                        if let error = error {
+                            self.showQuickMessage(withText: error.localizedDescription, messageType: .error)
+                        }
+                    }
+                return
+                }
+                
+            }
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

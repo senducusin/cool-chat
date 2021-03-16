@@ -114,7 +114,7 @@ class ConversationsController: UIViewController {
     
     private func setupUI(){
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         self.title = "Messages"
         
         self.view.addSubview(self.tableView)
