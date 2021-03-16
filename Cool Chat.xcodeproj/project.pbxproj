@@ -31,6 +31,7 @@
 		A66E155125FF0BF7004017D8 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E155025FF0BF7004017D8 /* ProfileViewModel.swift */; };
 		A66E155425FF0CE1004017D8 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E155325FF0CE1004017D8 /* ProfileTableViewCell.swift */; };
 		A66E155725FF3283004017D8 /* ProfileFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E155625FF3283004017D8 /* ProfileFooter.swift */; };
+		A679C48D260095CD00363BD3 /* ImagePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A679C48C260095CD00363BD3 /* ImagePreviewController.swift */; };
 		A693B2FD25FC338000C6B2D8 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */; };
 		A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */; };
 		A693B30D25FC483E00C6B2D8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */; };
@@ -80,6 +81,7 @@
 		A66E155025FF0BF7004017D8 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A66E155325FF0CE1004017D8 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		A66E155625FF3283004017D8 /* ProfileFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFooter.swift; sourceTree = "<group>"; };
+		A679C48C260095CD00363BD3 /* ImagePreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewController.swift; sourceTree = "<group>"; };
 		A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				A635182125FCBBE800A21E73 /* NewMessageController.swift */,
 				A635182E25FCF63C00A21E73 /* ChatController.swift */,
 				A624745425FEFEC100FBF17A /* ProfileController.swift */,
+				A679C48C260095CD00363BD3 /* ImagePreviewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				A66E155725FF3283004017D8 /* ProfileFooter.swift in Sources */,
 				A635182525FCC50200A21E73 /* NewMessageTableViewCell.swift in Sources */,
 				A6F0020125FB6A3F00CDC901 /* UITableView+Extensions.swift in Sources */,
+				A679C48D260095CD00363BD3 /* ImagePreviewController.swift in Sources */,
 				A635183225FCFDDB00A21E73 /* CustomInputAccessoryView.swift in Sources */,
 				A624744C25FEF29A00FBF17A /* Conversation.swift in Sources */,
 				A66E155425FF0CE1004017D8 /* ProfileTableViewCell.swift in Sources */,

@@ -101,6 +101,20 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
         
         return .init(width: view.frame.width, height: estimatedSize.height)
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.collectionView.deselectItem(at: indexPath, animated: true)
+        let message = messages[indexPath.row]
+        if message.messageType == .image {
+            
+            
+            if let url = URL(string: message.content) {
+                let controller = ImagePreviewController()
+                controller.imageURL = url
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        }
+    }
 }
 
 
