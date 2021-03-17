@@ -115,7 +115,8 @@ class ChatCollectionViewCell: UICollectionViewCell {
         let viewModel = MessageViewModel(message: message)
         
         self.bubbleContainer.backgroundColor = viewModel.messageBackgroundColor
-        self.textView.textColor = viewModel.messageTextColor
+        
+        self.textView.textColor = .white
         
         switch message.messageType {
         case .text:

@@ -90,10 +90,10 @@ class LoginController: UIViewController{
     private func checkFormStatus(){
         if self.loginViewModel.formIsValid {
             self.loginButton.isEnabled = true
-            self.loginButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            self.loginButton.backgroundColor = .white
         }else{
             self.loginButton.isEnabled = false
-            self.loginButton.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+            self.loginButton.backgroundColor = .themeLightGray
         }
     }
     
@@ -101,13 +101,18 @@ class LoginController: UIViewController{
         self.view.backgroundColor = .systemPurple
         self.navigationController?.navigationBar.isHidden = true
         
-        self.view.addGradientToView(with: [UIColor.systemPurple.cgColor, UIColor.systemPink.cgColor])
+        self.view.backgroundColor = .themeBlack
         
-        self.setupTopCenterAuthView(subview: self.iconImage)
+        self.view.addSubview(self.iconImage)
+        self.iconImage.centerX(inView: self.view)
+        self.iconImage.anchor(top: self.view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
+        self.iconImage.setDimensions(height: 140, width: 190)
         
         let _ = UIStackView.setupStackView(with: self, subviews: [self.emailView, self.passwordView,self.loginButton], topAnchor: self.iconImage.bottomAnchor)
         
         self.view.addSubview(self.dontHaveAnAccountButton)
+        
+        self.iconImage.setWidth(width: 400)
         
         self.dontHaveAnAccountButton.anchor(left:self.view.leftAnchor, bottom:self.view.safeAreaLayoutGuide.bottomAnchor, right: self.view.rightAnchor, paddingLeft: 32, paddingRight: 32)
         
@@ -121,6 +126,10 @@ class LoginController: UIViewController{
 
 extension LoginController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        guard !textField.text!.isEmpty else {
+            return false
+        }
         
         if textField == self.emailTextField {
             self.passwordTextField.becomeFirstResponder()

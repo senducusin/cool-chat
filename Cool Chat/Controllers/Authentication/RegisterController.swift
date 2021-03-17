@@ -14,12 +14,12 @@ class RegisterController: UIViewController{
     private let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage.registerPhotoImage, for: .normal)
-        button.tintColor = UIColor(white: 1, alpha: 0.7)
+        button.tintColor = .white
         button.addTarget(self, action: #selector(addPhotoButtonDidTap), for: .touchUpInside)
         button.layer.cornerRadius = 30
 
-        button.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
-        button.layer.borderWidth = 3
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 7
         return button
     }()
     
@@ -145,21 +145,12 @@ class RegisterController: UIViewController{
         
         let camera = UIAlertAction(title: "Use Camera", style: .default) { [weak self] _ in
             if UIImagePickerController.isSourceTypeAvailable(.camera){
-                let imagePickerController = UIImagePickerController()
-                imagePickerController.sourceType = .camera
-                imagePickerController.cameraDevice = .front
-                imagePickerController.allowsEditing = true
-                imagePickerController.delegate = self
-                
-                self?.present(imagePickerController, animated: true, completion: nil)
+                self?.useCamera()
             }
         }
         
         let photos = UIAlertAction(title: "Open Photos", style: .default) { [weak self] _ in
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.allowsEditing = true
-            imagePickerController.delegate = self
-            self?.present(imagePickerController, animated: true, completion: nil)
+            self?.openPhotos()
         }
         
         alert.addAction(camera)
@@ -167,6 +158,23 @@ class RegisterController: UIViewController{
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(alert, animated: true)
+    }
+    
+    private func openPhotos(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    private func useCamera(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .camera
+        imagePickerController.cameraDevice = .front
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        
+        self.present(imagePickerController, animated: true, completion: nil)
     }
     
     private func setupNotificationObservers(for textFields:[UITextField]){
@@ -182,17 +190,17 @@ class RegisterController: UIViewController{
     private func checkFormStatus(){
         if self.registerViewModel.formIsValid {
             self.signUpButton.isEnabled = true
-            self.signUpButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            self.signUpButton.backgroundColor = .white
         }else{
             self.signUpButton.isEnabled = false
-            self.signUpButton.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+            self.signUpButton.backgroundColor = .themeLightGray
         }
     }
     
     private func setupUI(){
-        self.view.addGradientToView(with: [UIColor.systemPurple.cgColor, UIColor.systemPink.cgColor])
+        self.view.backgroundColor = .themeBlack
         
-        self.setupTopCenterAuthView(subview: addPhotoButton, squareDimension: 200)
+        self.setupTopCenterAuthView(subview: addPhotoButton, squareDimension: 160)
         
         self.stackView = UIStackView.setupStackView(with: self, subviews: [self.emailView,self.fullNameView, self.usernameView, self.passwordView, self.signUpButton], topAnchor: self.addPhotoButton.bottomAnchor)
         
@@ -221,10 +229,11 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
         self.profileImage = image
         self.addPhotoButton.setBackgroundImage(nil, for: .normal)
         self.addPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
-        self.addPhotoButton.layer.cornerRadius = 200 / 2
+        self.addPhotoButton.layer.cornerRadius = 160 / 2
         self.addPhotoButton.layer.masksToBounds = true
         self.addPhotoButton.imageView?.clipsToBounds = true
         self.addPhotoButton.imageView?.contentMode = .scaleAspectFill
+        self.addPhotoButton.layer.borderWidth = 3
         
         dismiss(animated: true, completion: nil)
     }
@@ -233,6 +242,11 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
 
 extension RegisterController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        guard !textField.text!.isEmpty else {
+            return false
+        }
+        
         if textField == self.passwordTextField {
             self.signUpDidTap()
         }else{

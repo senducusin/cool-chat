@@ -10,7 +10,7 @@ import UIKit
 extension UIImageView {
     static let iconImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "bubble.right")
+        imageView.image = UIImage(systemName: "bubble.left.and.bubble.right.fill")
         imageView.tintColor = .white
         return imageView
     }()

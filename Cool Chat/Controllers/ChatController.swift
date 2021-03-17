@@ -13,7 +13,6 @@ class ChatController: UICollectionViewController{
     
     private lazy var customInputView: CustomInputAccessoryView = {
         let inputView = CustomInputAccessoryView(frame: .zero)
-//        CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         inputView.delegate = self
         return inputView
     }()
@@ -70,8 +69,9 @@ class ChatController: UICollectionViewController{
     
     // MARK: - Helpers
     private func setupUI(){
-        self.collectionView.backgroundColor = .white
-        self.title = user.username
+        self.collectionView.backgroundColor = .themeBlack
+        
+        self.navigationItem.setTitle(self.user.fullname, subtitle:"@\(self.user.username)" )
         
         self.collectionView.register(ChatCollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.chatCollectionViewCell)
         self.collectionView.alwaysBounceVertical = true
@@ -119,8 +119,8 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.collectionView.deselectItem(at: indexPath, animated: true)
         let message = messages[indexPath.row]
+        
         if message.messageType == .image {
-            
             if let url = URL(string: message.content) {
                 let controller = ImagePreviewController()
                 controller.imageURL = url
@@ -131,22 +131,26 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
 }
 
 extension ChatController: CustomInputAccessoryViewDelegate {
-    func inputViewWantsToOpenCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.sourceType = .camera
-            imagePickerController.delegate = self
-            
-            self.present(imagePickerController, animated: true, completion: nil)
+    func inputViewCameraUtilityDidTap() {
+        let alert = UIAlertController(title: nil, message:"How do you want to select a photo to send?",preferredStyle: .actionSheet)
+        
+        let camera = UIAlertAction(title: "Use Camera", style: .default) { [weak self] _ in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                self?.useCamera()
+            }
         }
+        
+        let photos = UIAlertAction(title: "Open Photos", style: .default) { [weak self] _ in
+            self?.openPhotos()
+        }
+        
+        alert.addAction(camera)
+        alert.addAction(photos)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
     }
-    
-    func inputViewWantsToOpenPhotos() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
-    }
-    
+
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
         
         FirebaseWebService.shared.uploadMessage(message, to: user, withTypeOf: .text) { (error) in
@@ -158,8 +162,24 @@ extension ChatController: CustomInputAccessoryViewDelegate {
             }
             
             inputView.clearMessageText()
-            
         }
+    }
+    
+    private func openPhotos(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    private func useCamera(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .camera
+        imagePickerController.cameraDevice = .front
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        
+        self.present(imagePickerController, animated: true, completion: nil)
     }
 }
 

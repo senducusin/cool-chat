@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     private func configureNavigationBarAppearance(){
         let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.backgroundColor = .systemPurple
+        navigationBarAppearance.backgroundColor = .themeBlack
         
         navigationBarAppearance.titleTextAttributes = [.foregroundColor:UIColor.white]
         navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor:UIColor.white]
@@ -46,6 +46,8 @@ extension AppDelegate {
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+        UINavigationBar.appearance().tintColor = UIColor.themeBlue
+        
     }
 }
 

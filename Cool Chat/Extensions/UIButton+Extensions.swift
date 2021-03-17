@@ -13,8 +13,8 @@ extension UIButton {
         button.setTitle(title, for:.normal)
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .themeLightGray
+        button.setTitleColor(UIColor(red: 0.15, green: 0.14, blue: 0.19, alpha: 1.00), for: .normal)
         button.addTarget(vc, action: selector, for: .touchUpInside)
         button.isEnabled = false
         return button
@@ -23,9 +23,9 @@ extension UIButton {
     public static func createAuthAttributedButton(regularString: String, highlightedString: String,target:Any, selector:Selector)->UIButton{
         let button = UIButton(type: .system)
         
-        let attributedTitle = NSMutableAttributedString(string: regularString,attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.white])
+        let attributedTitle = NSMutableAttributedString(string: regularString,attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.themeBlue])
         
-        attributedTitle.append(NSAttributedString(string: highlightedString,attributes:[.font: UIFont.boldSystemFont(ofSize: 16), .foregroundColor: UIColor.white]))
+        attributedTitle.append(NSAttributedString(string: highlightedString,attributes:[.font: UIFont.boldSystemFont(ofSize: 16), .foregroundColor: UIColor.themeLightBlue]))
         
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(target, action: selector, for: .touchUpInside)
