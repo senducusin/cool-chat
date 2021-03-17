@@ -87,11 +87,14 @@ class CustomInputAccessoryView: UIView {
         self.layer.shadowOffset = .init(width: 0, height: -8)
         self.layer.shadowColor = UIColor.lightGray.cgColor
         
-        self.setupSendButton()
-        self.setupMessageInputTextView()
-        self.setupPlaceholderLabel()
-        
-        self.setupOptionsView()
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.01) {
+            self.setupSendButton()
+            self.setupMessageInputTextView()
+            self.setupPlaceholderLabel()
+    
+            self.setupOptionsView()
+        }
+
         
         NotificationCenter.default.addObserver(self, selector: #selector(messageInputDidChange), name: UITextView.textDidChangeNotification, object: nil)
     }

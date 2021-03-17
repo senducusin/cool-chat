@@ -38,7 +38,6 @@ extension Message {
         }
         
         if let seenTimestamp = dictionary["seenTimestamp"] as? Timestamp {
-           
             self.seenTimestamp = seenTimestamp
         }
     }

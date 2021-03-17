@@ -10,11 +10,14 @@ import UIKit
 class ChatController: UICollectionViewController{
     // MARK: - Properties
     private let user: User
+    
     private lazy var customInputView: CustomInputAccessoryView = {
-        let inputView = CustomInputAccessoryView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
+        let inputView = CustomInputAccessoryView(frame: .zero)
+//        CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         inputView.delegate = self
         return inputView
     }()
+    
     private var messages = [Message]()
     
     // MARK: - Lifecycle
@@ -40,7 +43,7 @@ class ChatController: UICollectionViewController{
     }
     
     override var inputAccessoryView: UIView? {
-        get {return customInputView}
+        get { return customInputView }
     }
     
     override var canBecomeFirstResponder: Bool {
