@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ConversationTableViewCell: UITableViewCell {
     // MARK: - Properties
@@ -23,21 +24,19 @@ class ConversationTableViewCell: UITableViewCell {
     
     let timestampLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .darkGray
+        label.textColor = .lightGray
         label.text = "2h"
         return label
     }()
     
     let usernameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
     
     let messageTextLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .darkGray
         return label
     }()
     
@@ -78,5 +77,16 @@ class ConversationTableViewCell: UITableViewCell {
         
         self.timestampLabel.text = viewModel.timestamp
         self.profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        
+        if let seen = conversation.message.seenTimestamp {
+            
+            self.usernameLabel.font = UIFont.systemFont(ofSize: 14)
+            self.timestampLabel.font = UIFont.systemFont(ofSize: 12)
+            self.messageTextLabel.font = UIFont.systemFont(ofSize: 14)
+        } else {
+            self.usernameLabel.font = UIFont.boldSystemFont(ofSize: 14)
+            self.timestampLabel.font = UIFont.boldSystemFont(ofSize: 12)
+            self.messageTextLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        }
     }
 }

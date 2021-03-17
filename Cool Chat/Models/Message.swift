@@ -15,7 +15,7 @@ struct Message {
     var user: User?
     let isFromCurrentUser: Bool
     var messageType: MessageType = .text
-    
+    var seenTimestamp: Timestamp?
     var chatPartnerId: String {
         return self.isFromCurrentUser ? self.toId : self.fromId
     }
@@ -36,7 +36,11 @@ extension Message {
                 }
             }
         }
-       
+        
+        if let seenTimestamp = dictionary["seenTimestamp"] as? Timestamp {
+           
+            self.seenTimestamp = seenTimestamp
+        }
     }
 }
 

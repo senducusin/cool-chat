@@ -32,6 +32,13 @@ class ChatController: UICollectionViewController{
         self.setupUI()
         self.fetchMessages()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        FirebaseWebService.shared.removeListener(.messageListener)
+    }
+    
     override var inputAccessoryView: UIView? {
         get {return customInputView}
     }
@@ -42,12 +49,18 @@ class ChatController: UICollectionViewController{
     
     // MARK: - API
     func fetchMessages(){
-        FirebaseWebService.fetchMessages(for: user) { messages in
+        FirebaseWebService.shared.fetchMessages(for: self.user) { messages in
             self.messages = messages
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.collectionView.scrollToItem(at: [0, self.messages.count - 1], at: .bottom, animated: false)
+            }
+            
+            if let lastMessageReceived = messages.last,
+               lastMessageReceived.seenTimestamp == nil {
+                print("?? last \(lastMessageReceived.content)")
+                FirebaseWebService.shared.updateRecentMessage(with: self.user)
             }
         }
     }
@@ -105,7 +118,6 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
         let message = messages[indexPath.row]
         if message.messageType == .image {
             
-            
             if let url = URL(string: message.content) {
                 let controller = ImagePreviewController()
                 controller.imageURL = url
@@ -114,7 +126,6 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
-
 
 extension ChatController: CustomInputAccessoryViewDelegate {
     func inputViewWantsToOpenCamera() {
@@ -135,7 +146,7 @@ extension ChatController: CustomInputAccessoryViewDelegate {
     
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
         
-        FirebaseWebService.uploadMessage(message, to: user, withTypeOf: .text) { (error) in
+        FirebaseWebService.shared.uploadMessage(message, to: user, withTypeOf: .text) { (error) in
             if let error = error {
                 DispatchQueue.main.async {
                     self.showQuickMessage(withText: error.localizedDescription, messageType: .error)
@@ -156,7 +167,7 @@ extension ChatController: UIImagePickerControllerDelegate, UINavigationControlle
         
         if let image = info[.originalImage] as? UIImage {
         
-            FirebaseWebService.uploadImageAsMessage(withImage: image, to: user, withTypeOf: .image) { error in
+            FirebaseWebService.shared.uploadImageAsMessage(withImage: image, to: user, withTypeOf: .image) { error in
                 guard error == nil else {
                     DispatchQueue.main.async {
                         if let error = error {

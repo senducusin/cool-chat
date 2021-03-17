@@ -36,7 +36,7 @@ class NewMessageController: UITableViewController {
     
     // MARK: - API
     private func fetchUsers(){
-        FirebaseWebService.fetchUsers { result in
+        FirebaseWebService.shared.fetchUsers { result in
             switch(result){
             
             case .success(let users):

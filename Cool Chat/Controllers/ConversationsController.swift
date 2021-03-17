@@ -75,7 +75,7 @@ class ConversationsController: UIViewController {
     
     func fetchConversations(){
         self.conversationsDictionary.removeAll()
-        FirebaseWebService.fetchConversations { conversations in
+        FirebaseWebService.shared.fetchConversations { conversations in
             self.conversations.removeAll()
             conversations.forEach { conversation in
                 let message = conversation.message

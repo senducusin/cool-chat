@@ -46,7 +46,7 @@ class ProfileController: UITableViewController {
     // MARK: - API
     private func fetchUser(){
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        FirebaseWebService.fetchUser(with: uid) { (user) in
+        FirebaseWebService.shared.fetchUser(with: uid) { (user) in
             self.user = user
         }
     }
