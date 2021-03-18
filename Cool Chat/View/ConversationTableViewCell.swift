@@ -18,7 +18,8 @@ class ConversationTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .themeBlack
+        imageView.tintColor = .themeLightGray
+        imageView.backgroundColor = .themeDarkGray
         return imageView
     }()
     
@@ -87,7 +88,8 @@ class ConversationTableViewCell: UITableViewCell {
         self.messageTextLabel.text = viewModel.content
         
         self.timestampLabel.text = viewModel.timestamp
-        self.profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        self.profileImageView.sd_setImage(with: viewModel.profileImageUrl,
+                                          placeholderImage: UIImage(systemName: "person.crop.circle"))
         
         self.messageTextLabel.font = viewModel.messageTextFont
         self.timestampLabel.font = viewModel.timestampFont

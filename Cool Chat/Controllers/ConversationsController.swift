@@ -155,7 +155,6 @@ extension ConversationsController: UITableViewDataSource, UITableViewDelegate {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: UITableViewCell.conversationTVCellIdentifier, for: indexPath) as! ConversationTableViewCell
         let conversation = self.viewModel.conversationAt(index: indexPath.row)
         cell.conversation = conversation
-        print("trig \(conversation.message.content)")
         return cell
     }
     

@@ -13,9 +13,10 @@ class NewConversationTableViewCell: UITableViewCell {
     // MARK: - Properties
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .systemPurple
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.tintColor = .themeLightGray
+        imageView.backgroundColor = .themeDarkGray
         return imageView
     }()
     
@@ -80,7 +81,10 @@ class NewConversationTableViewCell: UITableViewCell {
             self.fullnameLabel.text = viewModel.fullName
             self.usernameLabel.text = viewModel.username
             
-            self.profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
+            self.profileImageView.sd_setImage(with:viewModel.imageUrl,
+                                              placeholderImage: UIImage(systemName: "person.crop.circle"))
+      
+            
         }
     }
 }

@@ -20,7 +20,8 @@ class ChatCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .lightGray
+        imageView.backgroundColor = .themeDarkGray
+        imageView.tintColor = .themeLightGray
         return imageView
     }()
     
@@ -118,7 +119,7 @@ class ChatCollectionViewCell: UICollectionViewCell {
         bubbleRightAnchor.isActive = viewModel.rightAnchorActive
         
         profileImageView.isHidden = viewModel.shouldHideProfileImage
-        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl, placeholderImage: UIImage(systemName: "person.crop.circle"))
     }
     
     private func setupMessageImageView(_ imageUrl:URL){

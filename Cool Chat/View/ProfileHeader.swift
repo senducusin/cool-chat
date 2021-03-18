@@ -34,6 +34,8 @@ class ProfileHeader: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 4.0
+        imageView.tintColor = .themeLightGray
+        imageView.backgroundColor = .themeDarkGray
         return imageView
     }()
     
@@ -96,12 +98,14 @@ class ProfileHeader: UIView {
     }
     
     private func populateUserData(){
-        guard let user = self.user,
-              let urlString = self.user?.profileImageUrl,
-              let url = URL(string: urlString) else {return}
+        guard let user = self.user else {
+            return
+        }
         
-        self.fullnameLabel.text = user.fullname
-        self.usernameLabel.text = "@\(user.username)"
-        self.profileImageView.sd_setImage(with: url, completed: nil)
+        let viewModel = ProfileHeaderViewModel(user: user)
+        
+        self.fullnameLabel.text = viewModel.fullname
+        self.usernameLabel.text = viewModel.username
+        self.profileImageView.sd_setImage(with: viewModel.imageUrl, placeholderImage: UIImage(systemName: "person.crop.circle"))
     }
 }

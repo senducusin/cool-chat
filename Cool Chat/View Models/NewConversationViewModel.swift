@@ -18,5 +18,15 @@ struct NewConversationViewModel {
         return user.username.capitalized
     }
     
+    var contentMode: UIView.ContentMode{
+        if let _ = URL(string: user.profileImageUrl) {
+            return .scaleAspectFill
+        }
+        return .scaleAspectFit
+    }
+    
+    var imageUrl: URL? {
+        return URL(string: user.profileImageUrl)
+    }
 }
 
