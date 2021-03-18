@@ -37,9 +37,17 @@ Start a new Conversation with a user
 
 ![](/Previews/preview-new-message.png)
 
-Chat View
+Search for a user
 
 ![](/Previews/preview-new-message-search.png)
+
+Chat view
+
+![](/Previews/preview-reply.png)
+
+Replying with an image
+
+![](/Previews/preview-image-message)
 
 Profile View
 
