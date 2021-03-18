@@ -29,7 +29,8 @@ struct ConversationViewModel {
         }else{
             self.conversationsDictionary[message.chatPartnerId] = conversation
         }
-        self.conversations = Array(self.conversationsDictionary.values).reversed()
+        self.conversations = Array(self.conversationsDictionary.values).sorted(by: { "\($0.message.timestamp!)" > "\($1.message.timestamp!)"
+        })
     }
     
     var numberOfConversation: Int {
@@ -46,6 +47,11 @@ struct ConversationViewModel {
     
     public func conversationWithUserAt(index:Int) -> User{
         return conversations[index].user
+    }
+    
+    public mutating func clear(){
+        self.conversations.removeAll()
+        self.conversationsDictionary.removeAll()
     }
     
 }

@@ -88,6 +88,7 @@ class ConversationsController: UIViewController {
     }
     
     func fetchConversations(){
+        self.viewModel.clear()
         FirebaseWebService.shared.fetchConversations { conversations in
             conversations.forEach { [weak self] conversation in
                 self?.viewModel.conversation = conversation
