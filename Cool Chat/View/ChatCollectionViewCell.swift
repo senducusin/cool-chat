@@ -41,6 +41,7 @@ class ChatCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.isHidden = true
+        imageView.layer.cornerRadius = 13
         imageView.setDimensions(height: 155, width: 220)
         return imageView
     }()
@@ -63,7 +64,7 @@ class ChatCollectionViewCell: UICollectionViewCell {
         self.profileImageView.layer.cornerRadius = 32/2
         
         addSubview(self.bubbleContainer)
-        self.bubbleContainer.layer.cornerRadius = 12
+        self.bubbleContainer.layer.cornerRadius = 16
         self.bubbleContainer.anchor(top:topAnchor, bottom: bottomAnchor)
         self.bubbleContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
         
@@ -76,32 +77,15 @@ class ChatCollectionViewCell: UICollectionViewCell {
         self.bubbleRightAnchor = self.bubbleContainer.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12)
         self.bubbleRightAnchor.isActive = false
         
-        
         self.bubbleContainer.addSubview(self.textView)
         self.textView.anchor(
             top:self.bubbleContainer.topAnchor,
             left:self.bubbleContainer.leftAnchor,
             bottom: self.bubbleContainer.bottomAnchor,
             right: self.bubbleContainer.rightAnchor,
-            paddingTop: 4,
-            paddingLeft: 12,
-            paddingBottom: 4,
-            paddingRight: 12
+            paddingLeft: 6,
+            paddingRight: 6
         )
-        
-        self.bubbleContainer.addSubview(self.messageImageView)
-        
-        self.messageImageView.anchor(
-            top:self.bubbleContainer.topAnchor,
-            left: self.bubbleContainer.leftAnchor,
-            bottom: self.bubbleContainer.bottomAnchor,
-            right:self.bubbleContainer.rightAnchor,
-            paddingTop: 10,
-            paddingLeft: 10,
-            paddingBottom: 10,
-            paddingRight: 10
-        )
-        
 
     }
     
@@ -147,10 +131,10 @@ class ChatCollectionViewCell: UICollectionViewCell {
             left: self.bubbleContainer.leftAnchor,
             bottom: self.bubbleContainer.bottomAnchor,
             right:self.bubbleContainer.rightAnchor,
-            paddingTop: 10,
-            paddingLeft: 10,
-            paddingBottom: 10,
-            paddingRight: 10
+            paddingTop: 8,
+            paddingLeft: 8,
+            paddingBottom: 8,
+            paddingRight: 8
         )
         
         self.textView.isHidden = true
