@@ -1,6 +1,6 @@
 **Cool Chat**
 
-Messaging iOS application that is capable of sending not only text messages but also images from Photo library or camera.
+A messaging iOS application that is capable of sending not only text messages but also images from Photo library or camera.
 
 This is a sample app that utilizes mainly UIKit, Firebase, MVVM, SDWebImage, and JGProgressHUD. The app was developed purely in Swift code. No storyboard included in exception of the LaunchScreen.
  
