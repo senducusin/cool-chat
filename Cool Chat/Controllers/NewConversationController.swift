@@ -1,5 +1,5 @@
 //
-//  NewMessageController.swift
+//  NewConversationController.swift
 //  Cool Chat
 //
 //  Created by Jansen Ducusin on 3/13/21.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol NewMessageControllerDelegate: class {
-    func controller(_ controller: NewMessageController, wantsToStartChatWith user: User)
+protocol NewConversationControllerDelegate: class {
+    func controller(_ controller: NewConversationController, wantsToStartChatWith user: User)
 }
 
-class NewMessageController: UITableViewController {
+class NewConversationController: UITableViewController {
     // MARK: - Properties
     private var users = [User]()
     private var filteredUsers = [User]()
@@ -19,7 +19,7 @@ class NewMessageController: UITableViewController {
         return searchController.isActive && !searchController.searchBar.text!.isEmpty
     }
     
-    weak var delegate: NewMessageControllerDelegate?
+    weak var delegate: NewConversationControllerDelegate?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -50,18 +50,16 @@ class NewMessageController: UITableViewController {
         }
     }
     
-    
-    
     // MARK: - Helpers
     private func setupUI(){
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .themeBlack
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.title = "New Message"
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonDidTap))
         
         self.tableView.tableFooterView = UIView()
-        self.tableView.register(NewMessageTableViewCell.self, forCellReuseIdentifier: UITableViewCell.newMessageTVCellIdentifier)
+        self.tableView.register(NewConversationTableViewCell.self, forCellReuseIdentifier: UITableViewCell.newMessageTVCellIdentifier)
         self.tableView.rowHeight = 80
         
         self.setupSearchController()
@@ -84,13 +82,13 @@ class NewMessageController: UITableViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension NewMessageController {
+extension NewConversationController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.inSearchMode ? self.filteredUsers.count : self.users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.newMessageTVCellIdentifier, for: indexPath) as! NewMessageTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.newMessageTVCellIdentifier, for: indexPath) as! NewConversationTableViewCell
         
         let user = self.inSearchMode ? self.filteredUsers[indexPath.row] : self.users[indexPath.row]
         cell.user = user
@@ -106,7 +104,7 @@ extension NewMessageController {
     }
 }
 
-extension NewMessageController: UISearchResultsUpdating {
+extension NewConversationController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text?.lowercased() else {return}
         

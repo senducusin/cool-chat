@@ -1,5 +1,5 @@
 //
-//  NewMessageTableViewCell.swift
+//  NewConversationTableViewCell.swift
 //  Cool Chat
 //
 //  Created by Jansen Ducusin on 3/13/21.
@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class NewMessageTableViewCell: UITableViewCell {
+class NewConversationTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     private let profileImageView: UIImageView = {
@@ -51,6 +51,7 @@ class NewMessageTableViewCell: UITableViewCell {
     
     // MARK: - Helper
     private func setupUI(){
+        self.backgroundColor = .themeBlack
         self.setupProfileImage()
         self.setupStackView()
     }
@@ -70,8 +71,6 @@ class NewMessageTableViewCell: UITableViewCell {
         addSubview(stack)
         stack.centerY(inView: self.profileImageView, leftAnchor:  self.profileImageView.rightAnchor, paddingLeft: 12)
     }
-    
-   
     
     public func configure(){
         

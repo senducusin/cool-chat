@@ -18,8 +18,8 @@
 		A635181525FC690A00A21E73 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635181425FC690A00A21E73 /* Encodable+Extensions.swift */; };
 		A635181A25FC8EF500A21E73 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635181925FC8EF500A21E73 /* AuthService.swift */; };
 		A635181F25FCA16300A21E73 /* QuickMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635181E25FCA16300A21E73 /* QuickMessageType.swift */; };
-		A635182225FCBBE800A21E73 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182125FCBBE800A21E73 /* NewMessageController.swift */; };
-		A635182525FCC50200A21E73 /* NewMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182425FCC50200A21E73 /* NewMessageTableViewCell.swift */; };
+		A635182225FCBBE800A21E73 /* NewConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182125FCBBE800A21E73 /* NewConversationController.swift */; };
+		A635182525FCC50200A21E73 /* NewConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182425FCC50200A21E73 /* NewConversationTableViewCell.swift */; };
 		A635182825FCC92E00A21E73 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182725FCC92E00A21E73 /* User.swift */; };
 		A635182B25FCCB7400A21E73 /* FirebaseWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182A25FCCB7400A21E73 /* FirebaseWebService.swift */; };
 		A635182F25FCF63C00A21E73 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635182E25FCF63C00A21E73 /* ChatController.swift */; };
@@ -32,6 +32,7 @@
 		A66E155425FF0CE1004017D8 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E155325FF0CE1004017D8 /* ProfileTableViewCell.swift */; };
 		A66E155725FF3283004017D8 /* ProfileFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E155625FF3283004017D8 /* ProfileFooter.swift */; };
 		A679C48D260095CD00363BD3 /* ImagePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A679C48C260095CD00363BD3 /* ImagePreviewController.swift */; };
+		A679CBF12602F29000848327 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A679CBF02602F29000848327 /* UIFont+Extensions.swift */; };
 		A693B2FD25FC338000C6B2D8 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */; };
 		A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */; };
 		A693B30D25FC483E00C6B2D8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */; };
@@ -70,8 +71,8 @@
 		A635181425FC690A00A21E73 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		A635181925FC8EF500A21E73 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		A635181E25FCA16300A21E73 /* QuickMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMessageType.swift; sourceTree = "<group>"; };
-		A635182125FCBBE800A21E73 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
-		A635182425FCC50200A21E73 /* NewMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageTableViewCell.swift; sourceTree = "<group>"; };
+		A635182125FCBBE800A21E73 /* NewConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationController.swift; sourceTree = "<group>"; };
+		A635182425FCC50200A21E73 /* NewConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationTableViewCell.swift; sourceTree = "<group>"; };
 		A635182725FCC92E00A21E73 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A635182A25FCCB7400A21E73 /* FirebaseWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWebService.swift; sourceTree = "<group>"; };
 		A635182E25FCF63C00A21E73 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
@@ -84,6 +85,7 @@
 		A66E155325FF0CE1004017D8 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		A66E155625FF3283004017D8 /* ProfileFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFooter.swift; sourceTree = "<group>"; };
 		A679C48C260095CD00363BD3 /* ImagePreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewController.swift; sourceTree = "<group>"; };
+		A679CBF02602F29000848327 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -225,7 +227,7 @@
 			children = (
 				A6F0020F25FB79AA00CDC901 /* Authentication */,
 				A6F001F925FB62E800CDC901 /* ConversationsController.swift */,
-				A635182125FCBBE800A21E73 /* NewMessageController.swift */,
+				A635182125FCBBE800A21E73 /* NewConversationController.swift */,
 				A635182E25FCF63C00A21E73 /* ChatController.swift */,
 				A624745425FEFEC100FBF17A /* ProfileController.swift */,
 				A679C48C260095CD00363BD3 /* ImagePreviewController.swift */,
@@ -249,6 +251,7 @@
 				A635183425FD059200A21E73 /* UICollectionViewCell+Extensions.swift */,
 				A6E5B0152601D8D8000B7985 /* UINavigationItem+Extensions.swift */,
 				A6E5B0182601FED1000B7985 /* UIColor+Extensions.swift */,
+				A679CBF02602F29000848327 /* UIFont+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -267,7 +270,7 @@
 			children = (
 				A6F0022725FB9E3A00CDC901 /* InputContainerView.swift */,
 				A6F0023325FBA2FA00CDC901 /* CustomTextField.swift */,
-				A635182425FCC50200A21E73 /* NewMessageTableViewCell.swift */,
+				A635182425FCC50200A21E73 /* NewConversationTableViewCell.swift */,
 				A635183125FCFDDB00A21E73 /* CustomInputAccessoryView.swift */,
 				A635183725FD065500A21E73 /* ChatCollectionViewCell.swift */,
 				A624744E25FEF79900FBF17A /* ConversationTableViewCell.swift */,
@@ -416,7 +419,7 @@
 				A635181F25FCA16300A21E73 /* QuickMessageType.swift in Sources */,
 				A6F001D625FB5FF000CDC901 /* SceneDelegate.swift in Sources */,
 				A635181125FC66B000A21E73 /* RegistrationCredential.swift in Sources */,
-				A635182225FCBBE800A21E73 /* NewMessageController.swift in Sources */,
+				A635182225FCBBE800A21E73 /* NewConversationController.swift in Sources */,
 				A693B31025FC4C7200C6B2D8 /* RegisterViewModel.swift in Sources */,
 				A6F0021825FB7B5A00CDC901 /* UIViewController+Extensions.swift in Sources */,
 				A6E5B0192601FED1000B7985 /* UIColor+Extensions.swift in Sources */,
@@ -432,7 +435,7 @@
 				A624745225FEFB5400FBF17A /* ConversationViewModel.swift in Sources */,
 				A6F0020525FB6AB200CDC901 /* UITableViewCell+Extensions.swift in Sources */,
 				A66E155725FF3283004017D8 /* ProfileFooter.swift in Sources */,
-				A635182525FCC50200A21E73 /* NewMessageTableViewCell.swift in Sources */,
+				A635182525FCC50200A21E73 /* NewConversationTableViewCell.swift in Sources */,
 				A6F0020125FB6A3F00CDC901 /* UITableView+Extensions.swift in Sources */,
 				A679C48D260095CD00363BD3 /* ImagePreviewController.swift in Sources */,
 				A635183225FCFDDB00A21E73 /* CustomInputAccessoryView.swift in Sources */,
@@ -443,6 +446,7 @@
 				A6F0021125FB79BC00CDC901 /* LoginController.swift in Sources */,
 				A66E155125FF0BF7004017D8 /* ProfileViewModel.swift in Sources */,
 				A635183825FD065500A21E73 /* ChatCollectionViewCell.swift in Sources */,
+				A679CBF12602F29000848327 /* UIFont+Extensions.swift in Sources */,
 				A6F0021E25FB7FA400CDC901 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

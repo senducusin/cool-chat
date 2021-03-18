@@ -56,7 +56,7 @@ class ConversationsController: UIViewController {
     }
     
     @objc private func newConversationButtonDidTap(){
-        let newMessageController = NewMessageController()
+        let newMessageController = NewConversationController()
         newMessageController.delegate = self
         let nav = UINavigationController(rootViewController: newMessageController)
         present(nav,animated: true, completion: nil)
@@ -154,9 +154,9 @@ extension ConversationsController: UITableViewDataSource, UITableViewDelegate {
 }
 
 // MARK: - NewMessageController Delegate
-extension ConversationsController: NewMessageControllerDelegate{
+extension ConversationsController: NewConversationControllerDelegate{
     
-    func controller(_ controller: NewMessageController, wantsToStartChatWith user: User) {
+    func controller(_ controller: NewConversationController, wantsToStartChatWith user: User) {
         
         dismiss(animated: true, completion: nil)
         self.showChatController(forUser: user)

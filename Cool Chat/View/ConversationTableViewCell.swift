@@ -41,25 +41,13 @@ class ConversationTableViewCell: UITableViewCell {
         return label
     }()
     
-    let cellSelectionView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .themeDarkGray
-        return view
-    }()
-    
-    let cellRegularView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .themeBlack
-        return view
-    }()
-    
     // MARK: - Lifecycle
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {
-            self.selectedBackgroundView = self.cellRegularView
+            self.selectedBackgroundView = UIView.cellRegularView
         }else{
-            self.selectedBackgroundView = self.cellSelectionView
+            self.selectedBackgroundView = UIView.cellSelectionView
         }
     }
     
@@ -96,14 +84,14 @@ class ConversationTableViewCell: UITableViewCell {
         guard let conversation = conversation else {return}
         let viewModel = ConversationViewModel(conversation:conversation)
         
-        self.usernameLabel.text = conversation.user.username.capitalized
-        self.messageTextLabel.text = conversation.message.content
+        self.usernameLabel.text = viewModel.username
+        self.messageTextLabel.text = viewModel.content
         
         self.timestampLabel.text = viewModel.timestamp
         self.profileImageView.sd_setImage(with: viewModel.profileImageUrl)
         
-        self.messageTextLabel.font = viewModel.mediumFont
-        self.timestampLabel.font = viewModel.smallFont
+        self.messageTextLabel.font = viewModel.messageTextFont
+        self.timestampLabel.font = viewModel.timestampFont
         
         self.messageTextLabel.textColor = viewModel.fontColor
         self.timestampLabel.textColor = viewModel.fontColor

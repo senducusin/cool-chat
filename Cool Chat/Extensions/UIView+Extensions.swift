@@ -9,6 +9,18 @@ import UIKit
 
 extension UIView {
     
+    static let cellSelectionView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .themeDarkGray
+        return view
+    }()
+    
+    static let cellRegularView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .themeBlack
+        return view
+    }()
+    
     public func addGradientToView(with cgColors:[CGColor], selfFrame:Bool = true){
         let gradient = CAGradientLayer()
         gradient.colors = cgColors
