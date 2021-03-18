@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Firebase
 
 struct Conversation {
     let user :User
     let message: Message
+    let type: DocumentChangeType
 }

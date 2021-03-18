@@ -12,6 +12,16 @@ class ConversationsController: UIViewController {
     // MARK: - Properties
     private let tableView = UITableView.createTable(customCellClass: ConversationTableViewCell.self)
     
+    private let noConversations: UILabel = {
+        let label = UILabel()
+        label.text = "No Conversation"
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.font = .systemFont(ofSize: 21, weight: .medium)
+        label.isHidden = true
+        return label
+    }()
+    
     private let newConversationButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage.conversationPlusIcon, for: .normal)
@@ -27,8 +37,7 @@ class ConversationsController: UIViewController {
         return button
     }()
     
-    private var conversations = [Conversation]()
-    private var conversationsDictionary = [String:Conversation]()
+    private var viewModel = ConversationViewModel()
     
     // MARK: - Lifecycle
     
@@ -79,24 +88,16 @@ class ConversationsController: UIViewController {
     }
     
     func fetchConversations(){
-        self.conversationsDictionary.removeAll()
         FirebaseWebService.shared.fetchConversations { conversations in
-            self.conversations.removeAll()
-            conversations.forEach { conversation in
-                let message = conversation.message
-                self.conversationsDictionary[message.chatPartnerId] = conversation
-                
-            }
-            self.conversations = Array(self.conversationsDictionary.values).reversed()
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            conversations.forEach { [weak self] conversation in
+              
+                self?.viewModel.conversation = conversation
+                self?.tableView.reloadData()
             }
         }
     }
     
     // MARK: - Helpers
-    
     private func showChatController(forUser user: User){
         let controller = ChatController(user: user)
         navigationController?.pushViewController(controller, animated: true)
@@ -120,7 +121,7 @@ class ConversationsController: UIViewController {
     private func setupUI(){
         self.tableView.backgroundColor = .themeBlack
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        self.title = "Messages"
+        self.title = "Conversations"
         
         self.view.addSubview(self.tableView)
         
@@ -136,21 +137,38 @@ class ConversationsController: UIViewController {
 // MARK: - TableView Datasource and Delegate
 extension ConversationsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.conversations.count
+        return self.viewModel.numberOfConversation
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: UITableViewCell.conversationTVCellIdentifier, for: indexPath) as! ConversationTableViewCell
-        let conversation = conversations[indexPath.row]
+        let conversation = self.viewModel.conversationAt(index: indexPath.row)
         cell.conversation = conversation
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        let user = conversations[indexPath.row].user
+        let user = self.viewModel.conversationWithUserAt(index: indexPath.row)
         self.showChatController(forUser: user)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let user = self.viewModel.conversationWithUserAt(index: indexPath.row)
+            FirebaseWebService.shared.deleteConversation(withUser: user) { error in
+                guard error == nil else {
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    return
+                }
+                
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
 }
 
 // MARK: - NewMessageController Delegate

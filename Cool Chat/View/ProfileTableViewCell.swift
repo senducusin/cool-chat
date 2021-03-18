@@ -28,7 +28,7 @@ class ProfileTableViewCell: UITableViewCell {
         view.addSubview(self.iconImage)
         self.iconImage.centerX(inView: view)
         self.iconImage.centerY(inView: view)
-        view.backgroundColor = .systemPurple
+        view.backgroundColor = .themeLightBlack
         view.setDimensions(height: 40, width: 40)
         view.layer.cornerRadius = 40 / 2
         return view

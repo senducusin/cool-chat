@@ -73,7 +73,7 @@ class ProfileHeader: UIView {
     
     // MARK: - Helpers
     private func setupUI(){
-        self.addGradientToView(with: [UIColor.systemPurple.cgColor, UIColor.systemPink.cgColor])
+        self.backgroundColor = .themeBlack
         self.profileImageView.setDimensions(height: 200, width: 200)
         self.profileImageView.layer.cornerRadius = 200 / 2
         

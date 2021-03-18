@@ -53,7 +53,6 @@ class ConversationTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        print(isSelected)
         self.backgroundColor = .themeBlack
         
         self.addSubview(self.profileImageView)
@@ -82,7 +81,7 @@ class ConversationTableViewCell: UITableViewCell {
     private func configure(){
         
         guard let conversation = conversation else {return}
-        let viewModel = ConversationViewModel(conversation:conversation)
+        let viewModel = ConversationTableViewModel(conversation:conversation)
         
         self.usernameLabel.text = viewModel.username
         self.messageTextLabel.text = viewModel.content

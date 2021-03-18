@@ -126,7 +126,6 @@ class LoginController: UIViewController{
 
 extension LoginController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         guard !textField.text!.isEmpty else {
             return false
         }
@@ -134,6 +133,7 @@ extension LoginController: UITextFieldDelegate{
         if textField == self.emailTextField {
             self.passwordTextField.becomeFirstResponder()
         } else {
+
             self.loginDidTap()
         }
         

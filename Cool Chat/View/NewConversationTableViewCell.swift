@@ -22,6 +22,7 @@ class NewConversationTableViewCell: UITableViewCell {
     private let usernameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = .white
         label.text = "username"
         return label
     }()
@@ -75,9 +76,9 @@ class NewConversationTableViewCell: UITableViewCell {
     public func configure(){
         
         if let user = user {
-            self.fullnameLabel.text = user.fullname
-            
-            self.usernameLabel.text = user.username
+            let viewModel = NewConversationViewModel(user: user)
+            self.fullnameLabel.text = viewModel.fullName
+            self.usernameLabel.text = viewModel.username
             
             self.profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
         }

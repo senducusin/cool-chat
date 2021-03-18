@@ -71,12 +71,12 @@ class NewConversationController: UITableViewController {
         self.navigationItem.searchController = searchController
         self.searchController.obscuresBackgroundDuringPresentation = false
         self.searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.searchBar.placeholder = "Search for a user"
+        self.searchController.searchBar.placeholder = "Type a username"
         self.definesPresentationContext = false
         
         if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            textfield.textColor = .systemPurple
-            textfield.backgroundColor = .white
+            textfield.textColor = .white
+            textfield.backgroundColor = .themeLightBlack
         }
     }
 }

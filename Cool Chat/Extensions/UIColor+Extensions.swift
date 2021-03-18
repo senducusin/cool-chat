@@ -14,4 +14,5 @@ extension UIColor {
     static let themeDarkBlue = UIColor(red: 0.10, green: 0.31, blue: 0.98, alpha: 1.00)
     static let themeLightBlue = UIColor(red: 0.21, green: 0.53, blue: 1.00, alpha: 1.00)
     static let themeBlue = UIColor(red: 0.16, green: 0.43, blue: 0.99, alpha: 1.00)
+    static let themeLightBlack = UIColor(red: 0.04, green: 0.04, blue: 0.05, alpha: 1.00)
 }

@@ -53,12 +53,11 @@ class ProfileController: UITableViewController {
     
     // MARK: - Helpers
     private func setupUI(){
-        self.tableView.backgroundColor = .white
         self.tableView.tableHeaderView = self.headerView
         self.tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: UITableViewCell.profileTVCellIdentifier)
         self.tableView.contentInsetAdjustmentBehavior = .never
         self.tableView.rowHeight = 64
-        self.tableView.backgroundColor = .systemGroupedBackground
+        self.tableView.backgroundColor = .themeDarkGray
         
         self.footerView.delegate = self
         self.footerView.frame = .init(x: 0, y: 0, width: self.view.frame.width, height: 100)

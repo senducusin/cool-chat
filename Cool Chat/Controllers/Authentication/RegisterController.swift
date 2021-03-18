@@ -243,28 +243,16 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
 extension RegisterController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        guard !textField.text!.isEmpty else {
-            return false
-        }
-        
         if textField == self.passwordTextField {
+            guard !textField.text!.isEmpty else {
+                return false
+            }
             self.signUpDidTap()
         }else{
-            self.moveToNextTextField(textField)
+            textField.resignFirstResponder()
         }
         
         return true
     }
     
-    private func moveToNextTextField(_ textField: UITextField){
-        let fields = self.stackView.getAllTextFields()
-        let fieldIndex = fields.firstIndex(of: textField)
-        
-        if let fieldIndex = fieldIndex {
-            if fieldIndex < fields.count - 1 {
-                fields[fieldIndex + 1].becomeFirstResponder()
-            }
-        }
-        
-    }
 }

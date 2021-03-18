@@ -61,7 +61,6 @@ class ChatController: UICollectionViewController{
             
             if let lastMessageReceived = messages.last,
                lastMessageReceived.seenTimestamp == nil {
-                print("?? last \(lastMessageReceived.content)")
                 FirebaseWebService.shared.updateRecentMessage(with: self.user)
             }
         }

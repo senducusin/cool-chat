@@ -32,7 +32,6 @@ class FirebaseWebService {
             guard var users:[User] = snapshot?.documents.map({ User($0.data())! }) else { return }
             
             if let i = users.firstIndex(where: { $0.uid == Auth.auth().currentUser?.uid }){
-                print(users[i].fullname)
                 users.remove(at: i)
             }
             
@@ -77,6 +76,7 @@ class FirebaseWebService {
         
         self.fetchMessageListener =  query.addSnapshotListener {(snapshot, error) in
             snapshot?.documentChanges.forEach({ change in
+                
                 if change.type == .added {
                     let dictionary = change.document.data()
                     messages.append(Message(dictionary: dictionary))
@@ -99,12 +99,13 @@ class FirebaseWebService {
                 let message = Message(dictionary: dictionary)
                 
                 self.fetchUser(with: message.chatPartnerId) { user in
-                    
-                    let conversation = Conversation(user: user, message: message)
+                    let conversation = Conversation(user: user, message: message, type: change.type)
                     conversations.append(conversation)
                     completion(conversations)
                 }
             })
+            
+           
         }
     }
     
@@ -182,7 +183,37 @@ class FirebaseWebService {
                 print("DEBUG: \(error.localizedDescription)")
                 return
             }
-           
+        }
+    }
+    
+    func deleteConversation(withUser user:User, completion:@escaping((Error?) ->())){
+        guard let currentUid = Auth.auth().currentUser?.uid else {return}
+        
+        let query = COLLECTION_MESSAGES.document(currentUid).collection(user.uid)
+        let queryRecentMessage = COLLECTION_MESSAGES.document(currentUid).collection("recent-messages").document(user.uid)
+        
+        queryRecentMessage.delete { error in
+            guard error == nil else {
+                if let error = error {
+                    completion(error)
+                }
+                return
+            }
+            
+            query.getDocuments { snapshot, error in
+                guard error == nil,
+                      let snapshot = snapshot else {
+                    
+                    if let error = error {
+                        completion(error)
+                    }
+                    return
+                }
+               
+                snapshot.documents.forEach { document in
+                    query.document(document.documentID).delete(completion: completion)
+                }
+            }
         }
     }
 }

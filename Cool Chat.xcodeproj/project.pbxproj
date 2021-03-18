@@ -11,7 +11,7 @@
 		A624744825FEE54200FBF17A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624744725FEE54200FBF17A /* Constants.swift */; };
 		A624744C25FEF29A00FBF17A /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624744B25FEF29A00FBF17A /* Conversation.swift */; };
 		A624744F25FEF79900FBF17A /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624744E25FEF79900FBF17A /* ConversationTableViewCell.swift */; };
-		A624745225FEFB5400FBF17A /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624745125FEFB5400FBF17A /* ConversationViewModel.swift */; };
+		A624745225FEFB5400FBF17A /* ConversationTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624745125FEFB5400FBF17A /* ConversationTableViewModel.swift */; };
 		A624745525FEFEC100FBF17A /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624745425FEFEC100FBF17A /* ProfileController.swift */; };
 		A624745825FEFF8C00FBF17A /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624745725FEFF8C00FBF17A /* ProfileHeader.swift */; };
 		A635181125FC66B000A21E73 /* RegistrationCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635181025FC66B000A21E73 /* RegistrationCredential.swift */; };
@@ -33,6 +33,8 @@
 		A66E155725FF3283004017D8 /* ProfileFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E155625FF3283004017D8 /* ProfileFooter.swift */; };
 		A679C48D260095CD00363BD3 /* ImagePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A679C48C260095CD00363BD3 /* ImagePreviewController.swift */; };
 		A679CBF12602F29000848327 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A679CBF02602F29000848327 /* UIFont+Extensions.swift */; };
+		A679CBF42602F39200848327 /* NewConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A679CBF32602F39200848327 /* NewConversationViewModel.swift */; };
+		A679CBF9260304F800848327 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A679CBF8260304F800848327 /* ConversationViewModel.swift */; };
 		A693B2FD25FC338000C6B2D8 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */; };
 		A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */; };
 		A693B30D25FC483E00C6B2D8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */; };
@@ -64,7 +66,7 @@
 		A624744725FEE54200FBF17A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A624744B25FEF29A00FBF17A /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		A624744E25FEF79900FBF17A /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
-		A624745125FEFB5400FBF17A /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
+		A624745125FEFB5400FBF17A /* ConversationTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewModel.swift; sourceTree = "<group>"; };
 		A624745425FEFEC100FBF17A /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		A624745725FEFF8C00FBF17A /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		A635181025FC66B000A21E73 /* RegistrationCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCredential.swift; sourceTree = "<group>"; };
@@ -86,6 +88,8 @@
 		A66E155625FF3283004017D8 /* ProfileFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFooter.swift; sourceTree = "<group>"; };
 		A679C48C260095CD00363BD3 /* ImagePreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewController.swift; sourceTree = "<group>"; };
 		A679CBF02602F29000848327 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		A679CBF32602F39200848327 /* NewConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewModel.swift; sourceTree = "<group>"; };
+		A679CBF8260304F800848327 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
 		A693B2FC25FC338000C6B2D8 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30225FC3F6800C6B2D8 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		A693B30C25FC483E00C6B2D8 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -169,8 +173,10 @@
 			children = (
 				A693B31225FC55A000C6B2D8 /* Authentication */,
 				A635184125FD0D5C00A21E73 /* MessageViewModel.swift */,
-				A624745125FEFB5400FBF17A /* ConversationViewModel.swift */,
+				A624745125FEFB5400FBF17A /* ConversationTableViewModel.swift */,
 				A66E155025FF0BF7004017D8 /* ProfileViewModel.swift */,
+				A679CBF32602F39200848327 /* NewConversationViewModel.swift */,
+				A679CBF8260304F800848327 /* ConversationViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -408,9 +414,11 @@
 				A624745525FEFEC100FBF17A /* ProfileController.swift in Sources */,
 				A635184225FD0D5C00A21E73 /* MessageViewModel.swift in Sources */,
 				A6F001D425FB5FF000CDC901 /* AppDelegate.swift in Sources */,
+				A679CBF9260304F800848327 /* ConversationViewModel.swift in Sources */,
 				A6F0023425FBA2FA00CDC901 /* CustomTextField.swift in Sources */,
 				A635182825FCC92E00A21E73 /* User.swift in Sources */,
 				A635183525FD059200A21E73 /* UICollectionViewCell+Extensions.swift in Sources */,
+				A679CBF42602F39200848327 /* NewConversationViewModel.swift in Sources */,
 				A6F0023025FBA0E700CDC901 /* UIImage+Extensions.swift in Sources */,
 				A6F001FA25FB62E800CDC901 /* ConversationsController.swift in Sources */,
 				A6F0020825FB6B8200CDC901 /* UIBarButtonItem +Extensions.swift in Sources */,
@@ -432,7 +440,7 @@
 				A693B30325FC3F6800C6B2D8 /* UIButton+Extensions.swift in Sources */,
 				A624744825FEE54200FBF17A /* Constants.swift in Sources */,
 				A624744F25FEF79900FBF17A /* ConversationTableViewCell.swift in Sources */,
-				A624745225FEFB5400FBF17A /* ConversationViewModel.swift in Sources */,
+				A624745225FEFB5400FBF17A /* ConversationTableViewModel.swift in Sources */,
 				A6F0020525FB6AB200CDC901 /* UITableViewCell+Extensions.swift in Sources */,
 				A66E155725FF3283004017D8 /* ProfileFooter.swift in Sources */,
 				A635182525FCC50200A21E73 /* NewConversationTableViewCell.swift in Sources */,
