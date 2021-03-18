@@ -12,12 +12,18 @@ class ConversationsController: UIViewController {
     // MARK: - Properties
     private let tableView = UITableView.createTable(customCellClass: ConversationTableViewCell.self)
     
-    private let newMessageButton: UIButton = {
+    private let newConversationButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage.conversationPlusIcon, for: .normal)
-        button.backgroundColor = .systemPurple
+        button.backgroundColor = .themeDarkBlue
         button.tintColor = .white
-        button.addTarget(self, action: #selector(newMessageButtonDidTap), for: .touchUpInside)
+        
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowRadius = 7
+        button.layer.shadowOffset = .init(width:0, height:6)
+        button.layer.shadowColor = UIColor.themeDarkBlue.cgColor
+        
+        button.addTarget(self, action: #selector(newConversationButtonDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -41,7 +47,6 @@ class ConversationsController: UIViewController {
     
     // MARK: - Selectors
     @objc private func showProfileDidTap(){
-        
         let controller = ProfileController(style: .insetGrouped)
         controller.delegate = self
         
@@ -50,7 +55,7 @@ class ConversationsController: UIViewController {
         present(nav,animated: true, completion: nil)
     }
     
-    @objc private func newMessageButtonDidTap(){
+    @objc private func newConversationButtonDidTap(){
         let newMessageController = NewMessageController()
         newMessageController.delegate = self
         let nav = UINavigationController(rootViewController: newMessageController)
@@ -82,7 +87,7 @@ class ConversationsController: UIViewController {
                 self.conversationsDictionary[message.chatPartnerId] = conversation
                 
             }
-            self.conversations = Array(self.conversationsDictionary.values)
+            self.conversations = Array(self.conversationsDictionary.values).reversed()
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -113,26 +118,25 @@ class ConversationsController: UIViewController {
     }
     
     private func setupUI(){
-        self.view.backgroundColor = .white
+        self.tableView.backgroundColor = .themeBlack
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.title = "Messages"
-//        self.su
         
         self.view.addSubview(self.tableView)
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.createProfileButton(target: self, selector: #selector(showProfileDidTap))
         
-        self.view.addSubview(self.newMessageButton)
-        self.newMessageButton.setDimensions(height: 56, width: 56)
-        self.newMessageButton.layer.cornerRadius = 56 / 2
-        self.newMessageButton.anchor(bottom:view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 16, paddingRight: 24)
+        self.view.addSubview(self.newConversationButton)
+        self.newConversationButton.setDimensions(height: 56, width: 56)
+        self.newConversationButton.layer.cornerRadius = 56 / 2
+        self.newConversationButton.anchor(bottom:view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 16, paddingRight: 24)
     }
 }
 
 // MARK: - TableView Datasource and Delegate
 extension ConversationsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return conversations.count
+        return self.conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

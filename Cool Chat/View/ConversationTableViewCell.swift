@@ -25,26 +25,50 @@ class ConversationTableViewCell: UITableViewCell {
     let timestampLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
-        label.text = "2h"
         return label
     }()
     
     let usernameLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
     
     let messageTextLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .darkGray
+        label.textColor = .lightGray
         return label
     }()
     
+    let cellSelectionView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .themeDarkGray
+        return view
+    }()
+    
+    let cellRegularView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .themeBlack
+        return view
+    }()
+    
     // MARK: - Lifecycle
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if highlighted {
+            self.selectedBackgroundView = self.cellRegularView
+        }else{
+            self.selectedBackgroundView = self.cellSelectionView
+        }
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        print(isSelected)
+        self.backgroundColor = .themeBlack
         
-        addSubview(self.profileImageView)
+        self.addSubview(self.profileImageView)
         self.profileImageView.anchor(left: leftAnchor, paddingLeft: 12)
         self.profileImageView.setDimensions(height: 50, width: 50)
         self.profileImageView.layer.cornerRadius = 50/2
@@ -54,11 +78,11 @@ class ConversationTableViewCell: UITableViewCell {
         stack.axis = .vertical
         stack.spacing = 4
         
-        addSubview(stack)
+        self.addSubview(stack)
         stack.centerY(inView: self.profileImageView)
         stack.anchor(left: self.profileImageView.rightAnchor, right: self.rightAnchor, paddingTop: 20,  paddingLeft: 7, paddingRight: 12)
         
-        addSubview(self.timestampLabel)
+        self.addSubview(self.timestampLabel)
         self.timestampLabel.anchor(top:topAnchor, right:rightAnchor, paddingTop: 20, paddingRight: 12)
     }
     
@@ -72,21 +96,16 @@ class ConversationTableViewCell: UITableViewCell {
         guard let conversation = conversation else {return}
         let viewModel = ConversationViewModel(conversation:conversation)
         
-        self.usernameLabel.text = conversation.user.username
+        self.usernameLabel.text = conversation.user.username.capitalized
         self.messageTextLabel.text = conversation.message.content
         
         self.timestampLabel.text = viewModel.timestamp
         self.profileImageView.sd_setImage(with: viewModel.profileImageUrl)
         
-        if let seen = conversation.message.seenTimestamp {
-            
-            self.usernameLabel.font = UIFont.systemFont(ofSize: 14)
-            self.timestampLabel.font = UIFont.systemFont(ofSize: 12)
-            self.messageTextLabel.font = UIFont.systemFont(ofSize: 14)
-        } else {
-            self.usernameLabel.font = UIFont.boldSystemFont(ofSize: 14)
-            self.timestampLabel.font = UIFont.boldSystemFont(ofSize: 12)
-            self.messageTextLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        }
+        self.messageTextLabel.font = viewModel.mediumFont
+        self.timestampLabel.font = viewModel.smallFont
+        
+        self.messageTextLabel.textColor = viewModel.fontColor
+        self.timestampLabel.textColor = viewModel.fontColor
     }
 }

@@ -48,7 +48,6 @@ class ChatCollectionViewCell: UICollectionViewCell {
     
     private let bubbleContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemPurple
         return view
     }()
     

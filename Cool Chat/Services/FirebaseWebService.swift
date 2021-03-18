@@ -89,24 +89,21 @@ class FirebaseWebService {
     
     func fetchConversations(completion: @escaping([Conversation]) -> ()){
         var conversations = [Conversation]()
-        
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
         let query = COLLECTION_MESSAGES.document(uid).collection("recent-messages").order(by: "timestamp")
         
         self.fetchConversationListener = query.addSnapshotListener { (snapshot, error) in
-    
              snapshot?.documentChanges.forEach({ change in
                 let dictionary = change.document.data()
                 let message = Message(dictionary: dictionary)
                 
                 self.fetchUser(with: message.chatPartnerId) { user in
+                    
                     let conversation = Conversation(user: user, message: message)
-                  
                     conversations.append(conversation)
                     completion(conversations)
                 }
-                
             })
         }
     }
