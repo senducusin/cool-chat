@@ -47,7 +47,7 @@ Chat view
 
 Replying with an image
 
-![](/Previews/preview-image-message)
+![](/Previews/preview-image-message.png)
 
 Profile View
 
