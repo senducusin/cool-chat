@@ -40,7 +40,7 @@ class NewConversationController: UITableViewController {
             switch(result){
             
             case .success(let users):
-                self.users = users
+                self.users = users.sorted(by:  { $0.username < $1.username })
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
