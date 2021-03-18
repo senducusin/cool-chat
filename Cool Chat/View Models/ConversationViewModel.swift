@@ -23,18 +23,21 @@ struct ConversationViewModel {
         }
         
         let message = conversation.message
-        
-        if conversation.type == .added {
-            self.conversationsDictionary[message.chatPartnerId] = conversation
-            
-        } else if conversation.type == .removed {
+           
+       if conversation.type == .removed {
             self.conversationsDictionary[message.chatPartnerId] = nil
+        }else{
+            self.conversationsDictionary[message.chatPartnerId] = conversation
         }
         self.conversations = Array(self.conversationsDictionary.values).reversed()
     }
     
     var numberOfConversation: Int {
         return conversations.count
+    }
+    
+    var conversationIsEmpty: Bool {
+        return self.numberOfConversation == 0 ? true : false
     }
     
     public func conversationAt(index:Int) -> Conversation{
@@ -44,4 +47,5 @@ struct ConversationViewModel {
     public func conversationWithUserAt(index:Int) -> User{
         return conversations[index].user
     }
+    
 }

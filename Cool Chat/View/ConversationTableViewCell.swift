@@ -18,7 +18,7 @@ class ConversationTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .lightGray
+        imageView.backgroundColor = .themeBlack
         return imageView
     }()
     

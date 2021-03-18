@@ -16,9 +16,9 @@ class ConversationsController: UIViewController {
         let label = UILabel()
         label.text = "No Conversation"
         label.textAlignment = .center
-        label.textColor = .gray
+        label.textColor = .white
         label.font = .systemFont(ofSize: 21, weight: .medium)
-        label.isHidden = true
+        label.isHidden = false
         return label
     }()
     
@@ -90,14 +90,19 @@ class ConversationsController: UIViewController {
     func fetchConversations(){
         FirebaseWebService.shared.fetchConversations { conversations in
             conversations.forEach { [weak self] conversation in
-              
                 self?.viewModel.conversation = conversation
                 self?.tableView.reloadData()
+                self?.hideTableView(hide: self?.viewModel.conversationIsEmpty)
             }
         }
     }
     
     // MARK: - Helpers
+    private func hideTableView(hide:Bool?){
+        self.tableView.isHidden = hide ?? true
+        self.noConversations.isHidden = !(hide ?? false)
+    }
+    
     private func showChatController(forUser user: User){
         let controller = ChatController(user: user)
         navigationController?.pushViewController(controller, animated: true)
@@ -119,10 +124,15 @@ class ConversationsController: UIViewController {
     }
     
     private func setupUI(){
+        self.noConversations.frame = self.view.bounds
+        self.view.backgroundColor = .themeBlack
         self.tableView.backgroundColor = .themeBlack
+        self.tableView.isHidden = true
+        
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.title = "Conversations"
         
+        self.view.addSubview(self.noConversations)
         self.view.addSubview(self.tableView)
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.createProfileButton(target: self, selector: #selector(showProfileDidTap))
@@ -144,6 +154,7 @@ extension ConversationsController: UITableViewDataSource, UITableViewDelegate {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: UITableViewCell.conversationTVCellIdentifier, for: indexPath) as! ConversationTableViewCell
         let conversation = self.viewModel.conversationAt(index: indexPath.row)
         cell.conversation = conversation
+        print("trig \(conversation.message.content)")
         return cell
     }
     

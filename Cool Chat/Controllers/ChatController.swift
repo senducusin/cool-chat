@@ -38,7 +38,10 @@ class ChatController: UICollectionViewController{
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        FirebaseWebService.shared.removeListener(.messageListener)
+        if self.isMovingFromParent {
+            FirebaseWebService.shared.removeListener(.messageListener)
+        }
+        
     }
     
     override var inputAccessoryView: UIView? {
